@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+//Mock
+import MockCity from './mock/MockCity'
 
+import './App.css';
+import theme from './styles/theme'
+import GlobalStyles from './styles/GlobalStyles'
+import { ThemeProvider } from 'styled-components';
+import MockWeek from './mock/MockWeek';
+import MockHeader from './mock/MockHeader';
+import MockHome from './mock/MockHome';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+    
+    <GlobalStyles />
+        <MockHeader />
+        {/* <MockHome /> */}
+        <MockCity />
+    
+
+    </ThemeProvider>
   );
 }
 
