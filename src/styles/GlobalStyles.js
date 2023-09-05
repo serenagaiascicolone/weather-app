@@ -28,6 +28,12 @@ const GlobalStyles = createGlobalStyle`
         border-top-left-radius: 20px;
         border-bottom-right-radius: 20px;
     }
+
+    button:hover {
+        cursor: pointer;
+        background-color: ${props => props.theme.brightOneHover};
+        color: ${props => props.theme.brightFive}
+    }
     
     input {
         background-color: ${props => props.theme.brightThree};
@@ -39,6 +45,10 @@ const GlobalStyles = createGlobalStyle`
     h1, h2, h3, h4, h5 {
         margin: 0;
         padding: 0;
+    }
+
+    .home {
+        background-image: ${props => props.theme.shadeThree};
     }
 `
 

@@ -22,7 +22,7 @@ const WeekDay_img = styled.img `
 `
 
 export default function MockWeek (){
-    console.log(document.body.style)
+    // console.log(document.body.style)
     return (
         <WeekContainer>
         <WeekDay>

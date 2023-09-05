@@ -1,6 +1,7 @@
 const theme = {
     // colors
         brightOne: '#6E8C03', //verde
+        brightOneHover: '#5a730282', //verde chiaro
         brightTwo: '#F2D49B', //panna
         brightThree: '#F2C6A0', //rosa chiaro
         brightFour: '#BF6F41', //marrone chiaro
@@ -22,6 +23,7 @@ const theme = {
         //shade
         shadeOne: 'linear-gradient(#EBBA8E, #FFD19A)',
         shadeTwo: 'linear-gradient(#C1AE95, #EBBD97)',
+        shadeThree: 'linear-gradient(#DFC96A, #8B7A60)',
         // shadeOne: 'linear-gradient(red, yellow)',
         
 

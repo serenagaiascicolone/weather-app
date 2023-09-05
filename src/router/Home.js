@@ -1,8 +1,12 @@
-
 import { styled } from 'styled-components';
-import MockCityHome from './MockCityHome';
+
 import setBodyColor from '../utilities/bodyColor';
+
+
 import {BsArrowRepeat} from 'react-icons/bs'
+import CityList from '../components/City/CityList';
+
+
 const HomeContainer = styled.main `
     display: flex;
     flex-direction: column;
@@ -60,7 +64,7 @@ const IconResetFilter = styled(BsArrowRepeat) `
     }
 `
 
-export default function MockHome () {
+export default function Home () {
     
    setBodyColor('home')
 
@@ -84,7 +88,7 @@ export default function MockHome () {
             </HomeContainer_form>
         </HomeContainer>
 
-        <MockCityHome />
+        <CityList />
         </>
     )
 }

@@ -4,13 +4,14 @@ import { styled } from "styled-components"
 const CityContainer = styled.div `
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    height: 100vh;
 `
 const InfoCity = styled.article `
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
-    margin: 1rem;
+    margin: 0 1rem;
     background-image: ${props => props.theme.shadeTwo};
     border-radius: 20px;
     align-items: center;

@@ -1,7 +1,8 @@
+
 import { styled } from 'styled-components'
 import {FiArrowRight} from 'react-icons/fi'
 
-const Header = styled.header `
+const HeaderWeatherApp = styled.header `
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -31,12 +32,12 @@ const Arrow = styled(FiArrowRight) `
 }
 `
 
-export default function () {
+export default function Header() {
     return (
-        <Header>
+        <HeaderWeatherApp>
             {/* <Header_text>Weather App</Header_text> */}
             <Header_logo src={require("../img/logo.png")} alt="" />
             <Arrow/>
-        </Header>
+        </HeaderWeatherApp>
     )
 }
