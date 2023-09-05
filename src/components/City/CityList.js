@@ -1,6 +1,10 @@
 import { styled } from "styled-components"
 import { useState } from "react"
 import {HiArrowDown} from 'react-icons/hi'
+import {HiArrowNarrowUp} from 'react-icons/hi'
+
+import { cities } from "../../mock/cities"
+import { useNavigate } from "react-router-dom"
 
 const CityContainer = styled.div `
     display: flex;
@@ -27,17 +31,38 @@ const InfoCity = styled.article `
 `
 const ImgSelectedCity = styled.img `
     max-width: 25px;
-    padding: 0.5rem;
+    
 `
 
-const Arrow = styled(HiArrowDown)`
+const ArrowDown = styled(HiArrowDown)`
     position: absolute;
     position: absolute;
     bottom: 0;
     left: 50%;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     &&:hover {
     cursor: pointer;
+    padding: 1rem 0;
+    transition: 0.5s;
+}
+&.not-visible {
+display: none;
+}
+`
+const ArrowUp = styled(HiArrowNarrowUp)`
+    display: none;
+    position: absolute;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    padding: 1.5rem 0;
+    transition: 0.5s;
+    &&:hover {
+    cursor: pointer;
+    padding: 2rem 0;
+}
+&.visible {
+display: block;
 }
 `
 
@@ -47,34 +72,50 @@ const ButtonContainer = styled.div `
 `
 export default function CityList () {
 
-    const [isButtonContainerView, setButtonContainer] = useState(false)
+    const [isButtonContainerView, setButtonContainer] = useState(undefined)
+    let navigate = useNavigate()
+
    
-   
+
+
     return (
+        
+        
+        <CityContainer>
+            {cities.map((city, index) => {
+                return (
 
+                        <InfoCityContainer key={city.id}>   
+                            <InfoCity >
+                                <span>
+                                <h3> {city.name}</h3>
+                                <p>{city.date}</p>
+                                </span>
+                                <span>
+                                <h2>{city.temperature}°</h2>
+                                <ImgSelectedCity src={require('../../img/ico/cloudy_ico.png')} alt="" />
+                                </span>
+                                <ArrowDown 
+                                onClick={()=> setButtonContainer(index)}
+                                className = {isButtonContainerView === index ? 'not-visible' : ''}/>
+                                <ArrowUp 
+                                onClick={()=> setButtonContainer(undefined)}
+                                className = {isButtonContainerView === index ? 'visible' : ''}
+                                />
+                            </InfoCity>
+                            {isButtonContainerView === index &&  (
+                                <>
+                                <ButtonContainer>
+                                    <button> Cancella </button>
+                                <button onClick={() => navigate(`/city?lat=${city.coords.lat}&lon=${city.coords.lon}`)}> Dettagli meteo </button>
+                                </ButtonContainer>       
+                                </>
 
-<CityContainer>
-      <InfoCityContainer >   
-        <InfoCity onClick={()=> setButtonContainer(!isButtonContainerView)}>
-            <span>
-            <h3> Gela </h3>
-            <p>08.35</p>
-            </span>
-            <span>
-            <h2>23°</h2>
-            <ImgSelectedCity src={require('../../img/ico/cloudy_ico.png')} alt="" />
-            </span>
-            <Arrow/>
-        </InfoCity>
-        {isButtonContainerView && (
+                            )}
+                        </InfoCityContainer>          
 
-            <ButtonContainer>
-                <button> Cancella </button>
-                <button> Dettagli meteo </button>
-            </ButtonContainer>       
-
-        )}
-     </InfoCityContainer>          
+                )
+            })}
 </CityContainer>
     )
 

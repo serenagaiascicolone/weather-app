@@ -4,7 +4,9 @@ import setBodyColor from '../utilities/bodyColor';
 
 
 import {BsArrowRepeat} from 'react-icons/bs'
+import {FiSearch} from 'react-icons/fi'
 import CityList from '../components/City/CityList';
+import { useState } from 'react';
 
 
 const HomeContainer = styled.main `
@@ -33,34 +35,44 @@ const ButtonContainer = styled.div `
     gap: 1rem;
     justify-content: center;
 `
-const AddInput = styled.input `
-    width: 150px;
-    align-self: center;
-`
-const FilterContainer= styled.div`
-    display: flex;
-    /* flex-direction: column; */
-    gap: 0.5rem;
-    width: 100%;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
-`
-const FilterInput = styled.input `
-    width: 200px;
-    height: 25px;
+
+const InputContainer= styled.div`
+
+        display: flex;
+        /* flex-direction: column; */
+        gap: 0.5rem;
+        width: 100%;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    
+    `
+
+const Input = styled.input `
+    /* width: 200px; */
+    padding: 0.5rem;
 `
 
-// const ButtonResetFilter = styled.button `
-//    border-radius: 50%;
-
-//    `
-
-const IconResetFilter = styled(BsArrowRepeat) `
-    font-size: 1.2rem;
+const IconSearch = styled(FiSearch) `
+     font-size: 1.2rem;
     color: ${props => props.theme.softFour};
+    transition: 0.5s;
     &:hover {
     cursor: pointer; 
+    font-size: 1.5rem;
+
+    }
+    ` 
+
+const IconResetFilter = styled(BsArrowRepeat) `
+ 
+        font-size: 1.2rem;
+        color: ${props => props.theme.softFour};
+        transition: 0.5s;
+
+    &:hover {
+    cursor: pointer; 
+    rotate: 360deg;
     }
 `
 
@@ -68,7 +80,7 @@ export default function Home () {
     
    setBodyColor('home')
 
-
+    const [isAddInput, setIsAddInput] = useState(false)
     
     return (
         <>
@@ -77,14 +89,19 @@ export default function Home () {
             <h1>WEATHER APP</h1>
             <HomeContainer_form>
                 <ButtonContainer>
-                <button> Cerca città</button>
+                <button onClick={() => setIsAddInput(!isAddInput)}> Aggiungi città</button>
                 <button> Aggiungi posizione</button>
                 </ButtonContainer>
-                <AddInput type="text" />
-                <FilterContainer>
-                <FilterInput type="search" />
-                 < IconResetFilter />
-                </FilterContainer>
+                {isAddInput && (
+                    <InputContainer>
+                    <Input type="text" placeholder='cerca città'/>
+                    <IconSearch />
+                    </InputContainer>
+                )}
+                <InputContainer>
+                <Input type="search" placeholder='filtra città'/>
+                 < IconResetFilter  />
+                </InputContainer>
             </HomeContainer_form>
         </HomeContainer>
 
