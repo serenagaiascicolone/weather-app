@@ -2,7 +2,7 @@
 
 import { styled } from 'styled-components'
 import { cities } from './../../mock/cities';
-import { cityBackgroundImg } from '../../utilities/cityBackgroundImg';
+import { cityUI } from '../../utilities/cityUI';
 
 import setBodyColor from './../../utilities/bodyColor';
 import { useLocation } from 'react-router-dom';
@@ -20,6 +20,7 @@ const WeatherDay = styled.article `
     width: 70%;
     margin: 4rem auto; 
     gap: 1rem;
+    height: 492px;
 `
 const WeatherDay_Header = styled.div `
     display: flex;
@@ -79,8 +80,8 @@ console.log(coords)
 let city = cities.filter(city => city.coords.lat === Number(coords.lat))
 console.log(city)
 
-    let nameClass = cityBackgroundImg(city[0].ico)
-    setBodyColor(nameClass)
+    let nameUI = cityUI(city[0].ico)
+    setBodyColor(nameUI)
 
 
     return (
@@ -93,14 +94,14 @@ console.log(city)
             <WeatherDay_Header>
                 <CityContainer>
                 <ImageCity src={require('../../img/city.png')} alt="" />
-                <CityName>Gela</CityName>                
+                <CityName>{city[0].name}</CityName>                
                 </CityContainer>
                     <Day> Lunedì 04 </Day>
             </WeatherDay_Header>
             <ImageWeatherContainer>
-                <ImageWeather src={require('../../img/sun.png')} alt="" />
+                <ImageWeather src={require(`../../img/weather-img/${nameUI}.png`)} alt="" />
             </ImageWeatherContainer>
-            <Temperature>38°</Temperature>
+            <Temperature>{city[0].temperature}°</Temperature>
         </WeatherDay>
 
     {/* </BackgroundContainer> */}

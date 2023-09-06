@@ -18,9 +18,12 @@ const HomeContainer = styled.main `
     text-align: center; 
     /* height: 100vh; */
     /* padding: 2rem; */
-
- 
 `
+
+const HomeTitle = styled.h1 `
+    letter-spacing: 0.5rem;
+`
+
 const HomeContainer_form= styled.main `
     display: flex;
     flex-direction: column;
@@ -80,13 +83,13 @@ export default function Home () {
     let location = useLocation ()
     const [isAddInput, setIsAddInput] = useState(false)
 
-    setBodyColor('home')
+    setBodyColor('weather')
   
     return (
         <>
         
         <HomeContainer>
-            <h1>WEATHER APP</h1>
+            <HomeTitle>WEATHER APP</HomeTitle>
             <HomeContainer_form>
                 <ButtonContainer>
                 <button onClick={() => setIsAddInput(!isAddInput)}> Aggiungi città</button>
@@ -94,12 +97,12 @@ export default function Home () {
                 </ButtonContainer>
                 {isAddInput && (
                     <InputContainer>
-                    <Input type="text" placeholder='cerca città'/>
+                    <Input type="text" placeholder='cerca'/>
                     <IconSearch />
                     </InputContainer>
                 )}
                 <InputContainer>
-                <Input type="search" placeholder='filtra città'/>
+                <Input type="search" placeholder='filtra'/>
                  < IconResetFilter  />
                 </InputContainer>
             </HomeContainer_form>

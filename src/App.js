@@ -1,5 +1,5 @@
 //Mock
-import MockCity from './mock/MockCity'
+
 
 import './App.css';
 import theme from './styles/theme'

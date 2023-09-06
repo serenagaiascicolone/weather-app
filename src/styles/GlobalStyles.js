@@ -8,7 +8,8 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-image: ${props => props.theme.shadeOne};
+        background-color: ${props => props.theme.brightOne};
+        /* background-image: ${props => props.theme.shadeOne}; */
         background-size: cover;
         font-family: ${props => props.theme.fontPrimary};
         // font-family:'Bebas Neue', sans-serif;
@@ -37,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
         /* background-color: ${props => props.theme.brightThree}; */
         border-radius: 20px;
         padding: 0.2rem;
+        text-align: center;
         
     }
 
@@ -45,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
     }
 
-    .home {
+    .weather {
         background-image: ${props => props.theme.shadeOne};
         background-size: cover;
     }
@@ -62,6 +64,11 @@ const GlobalStyles = createGlobalStyle`
 
     .rain {
         background-image: ${props => props.theme.shadeFour};
+        background-size: cover;
+    }
+
+    .mixed {
+        background-image: ${props => props.theme.shadeFive};
         background-size: cover;
     }
 `

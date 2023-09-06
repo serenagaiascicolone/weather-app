@@ -3,10 +3,13 @@ import  Home from './Home'
 import Layout from '../components/Layout'
 import SelectedCity from '../components/City/SelectedCity'
 import { SelectedCityRoute } from './SelectedCityRoute';
+import NotFound from './NotFound';
+import Error from './Error';
 const router = createBrowserRouter ([
     {
         path: '/',
         element: <Layout />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
@@ -17,6 +20,10 @@ const router = createBrowserRouter ([
                 element: <SelectedCityRoute />
             }
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound />
     }
 ])
 

@@ -5,7 +5,9 @@ import {HiArrowNarrowUp} from 'react-icons/hi'
 
 import { cities } from "../../mock/cities"
 import { useNavigate } from "react-router-dom"
-import {cityBackgroundImg} from '../../utilities/cityBackgroundImg'
+import {cityUI} from '../../utilities/cityUI'
+
+
 
 const CityContainer = styled.div `
     display: flex;
@@ -35,6 +37,7 @@ const InfoCity = styled.article `
 `
 const ImgSelectedCity = styled.img `
     max-width: 25px;
+    margin: 0.5rem 0 0 0.5rem;
     
 `
 
@@ -74,32 +77,33 @@ const ButtonContainer = styled.div `
     display: flex;
     justify-content: space-around;
 `
+
+
+
+
 export default function CityList () {
     
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
-
-   
-
 
     return (
         
         
         <CityContainer>
             {cities.map((city, index) => {
-                let nameClass = cityBackgroundImg(city.ico);
-                console.log(nameClass)
+                let nameUI = cityUI(city.ico);
+                
                 return (
 
                         <InfoCityContainer key={city.id} >   
-                            <InfoCity className={nameClass}>
+                            <InfoCity className={nameUI}>
                                 <span>
                                 <h3> {city.name}</h3>
                                 <p>{city.date}</p>
                                 </span>
                                 <span>
                                 <h2>{city.temperature}°</h2>
-                                <ImgSelectedCity src={require('../../img/ico/cloudy_ico.png')} alt="" />
+                                <ImgSelectedCity src={require(`../../img/ico/${nameUI}.png`)} alt="" />
                                 </span>
                                 <ArrowDown 
                                 onClick={()=> setButtonContainer(index)}

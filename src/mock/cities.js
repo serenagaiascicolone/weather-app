@@ -33,4 +33,15 @@ export const cities = [
             lon: 11.2492839,
         }
     },
+    {
+        id: 'fdsq',
+        name: 'Firenze',
+        temperature: 28,
+        date: 8.30,
+        ico: 'mixed', 
+        coords: {
+            lat: 46.4992289,
+            lon: 11.2492839,
+        }
+    },
 ]

@@ -13,7 +13,7 @@ const HeaderWeatherApp = styled.header `
 const Header_text = styled.h2 `
     margin: 0;
     padding: 1rem;
-    /* color: ${props => props.theme.softTwo}; */
+    letter-spacing: 0.2rem;
     font-style: italic; 
 &&:hover {
     cursor: pointer;
@@ -46,7 +46,7 @@ export default function Header() {
     const location = useLocation().pathname
     const navigate = useNavigate()
 
-function handleBodyColor () {
+function handleClickHeaderText () {
     document.body.classList = '';
     navigate('/');
 }
@@ -54,7 +54,7 @@ function handleBodyColor () {
     return (
         <HeaderWeatherApp>
             {location === '/city' ? (
-            <Header_text onClick={handleBodyColor}>WEATHER APP</Header_text>
+            <Header_text onClick={handleClickHeaderText}>WEATHER APP</Header_text>
             ) : 
             
             <Header_logo src={require("../img/logo.png")} alt="" />
