@@ -1,8 +1,18 @@
 
 
 import { styled } from 'styled-components'
+import { cities } from './../../mock/cities';
+import { cityBackgroundImg } from '../../utilities/cityBackgroundImg';
+
+import setBodyColor from './../../utilities/bodyColor';
+import { useLocation } from 'react-router-dom';
 
 
+const BackgroundContainer = styled.div `
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+`
 const WeatherDay = styled.article `
 /* background-image: none ; */
     display: flex;
@@ -63,10 +73,22 @@ const Temperature = styled.h1 `
     font-family: ${props => props.theme.fontPrimary};
 `
 export default function SelectedCity ({coords}) {
+   let location = useLocation().pathname    
+    console.log(location)
 console.log(coords)
+let city = cities.filter(city => city.coords.lat === Number(coords.lat))
+console.log(city)
+
+    let nameClass = cityBackgroundImg(city[0].ico)
+    setBodyColor(nameClass)
+
+
     return (
         <>
         {/* <h1>weather app music</h1> */}
+
+    {/* <BackgroundContainer className={nameClass}> */}
+
         <WeatherDay>
             <WeatherDay_Header>
                 <CityContainer>
@@ -80,6 +102,8 @@ console.log(coords)
             </ImageWeatherContainer>
             <Temperature>38°</Temperature>
         </WeatherDay>
+
+    {/* </BackgroundContainer> */}
 
         {/* <MockWeek /> */}
         </>

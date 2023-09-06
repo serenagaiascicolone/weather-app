@@ -7,7 +7,7 @@ import {BsArrowRepeat} from 'react-icons/bs'
 import {FiSearch} from 'react-icons/fi'
 import CityList from '../components/City/CityList';
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 
 const HomeContainer = styled.main `
     display: flex;
@@ -77,11 +77,11 @@ const IconResetFilter = styled(BsArrowRepeat) `
 `
 
 export default function Home () {
-    
-   setBodyColor('home')
-
+    let location = useLocation ()
     const [isAddInput, setIsAddInput] = useState(false)
-    
+
+    setBodyColor('home')
+  
     return (
         <>
         

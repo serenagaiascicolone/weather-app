@@ -21,5 +21,16 @@ export const cities = [
             lat: 44.4992289,
             lon: 11.2492839,
         }
-    }
+    },
+    {
+        id: 'fdsa',
+        name: 'Roma',
+        temperature: 28,
+        date: 8.30,
+        ico: 'rain', 
+        coords: {
+            lat: 45.4992289,
+            lon: 11.2492839,
+        }
+    },
 ]

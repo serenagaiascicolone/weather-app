@@ -8,10 +8,8 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        /* background-color: ${props => props.theme.brightThree}; */
         background-image: ${props => props.theme.shadeOne};
-        /* background-image: url(${require('../img/effetti-atmosferici-con-dessert-e-alberi.jpg')}); */
-        /* background-size: cover; */
+        background-size: cover;
         font-family: ${props => props.theme.fontPrimary};
         // font-family:'Bebas Neue', sans-serif;
       
@@ -21,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
     button {
         border: none;
         background-color: ${props => props.theme.softFour};
-        color: ${props => props.theme.brightTwo};
+        
         font-family: ${props => props.theme.fontPrimary};
         font-weight: bolder;
         padding: 0.6rem;
@@ -36,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
     }
     
     input {
-        background-color: ${props => props.theme.brightThree};
+        /* background-color: ${props => props.theme.brightThree}; */
         border-radius: 20px;
         padding: 0.2rem;
         
@@ -48,7 +46,23 @@ const GlobalStyles = createGlobalStyle`
     }
 
     .home {
+        background-image: ${props => props.theme.shadeOne};
+        background-size: cover;
+    }
+
+    .sun {
+        background-image: ${props => props.theme.shadeTwo};
+        background-size: cover;
+    }
+
+    .cloud {
         background-image: ${props => props.theme.shadeThree};
+        background-size: cover;
+    }
+
+    .rain {
+        background-image: ${props => props.theme.shadeFour};
+        background-size: cover;
     }
 `
 

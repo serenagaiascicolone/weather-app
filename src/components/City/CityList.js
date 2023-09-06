@@ -5,6 +5,7 @@ import {HiArrowNarrowUp} from 'react-icons/hi'
 
 import { cities } from "../../mock/cities"
 import { useNavigate } from "react-router-dom"
+import {cityBackgroundImg} from '../../utilities/cityBackgroundImg'
 
 const CityContainer = styled.div `
     display: flex;
@@ -18,16 +19,19 @@ const InfoCityContainer = styled.section `
     flex-direction: column;
     gap: 0.5rem;
     
+    
     `
 const InfoCity = styled.article `
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
     margin: 0 1rem;
-    background-image: ${props => props.theme.shadeTwo};
+    /* background-image: ${props => props.theme.shadeFour};
+    background-size: cover; */
     border-radius: 20px;
     align-items: center;
     position:relative;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 `
 const ImgSelectedCity = styled.img `
     max-width: 25px;
@@ -71,7 +75,7 @@ const ButtonContainer = styled.div `
     justify-content: space-around;
 `
 export default function CityList () {
-
+    
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
 
@@ -83,10 +87,12 @@ export default function CityList () {
         
         <CityContainer>
             {cities.map((city, index) => {
+                let nameClass = cityBackgroundImg(city.ico);
+                console.log(nameClass)
                 return (
 
-                        <InfoCityContainer key={city.id}>   
-                            <InfoCity >
+                        <InfoCityContainer key={city.id} >   
+                            <InfoCity className={nameClass}>
                                 <span>
                                 <h3> {city.name}</h3>
                                 <p>{city.date}</p>

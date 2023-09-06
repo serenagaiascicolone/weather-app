@@ -8,6 +8,7 @@ const HeaderWeatherApp = styled.header `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* background-color: ${props => props.theme.lightOne}; */
 `
 const Header_text = styled.h2 `
     margin: 0;
@@ -41,13 +42,19 @@ const Arrow = styled(FiArrowRight) `
 `
 
 export default function Header() {
+    
     const location = useLocation().pathname
     const navigate = useNavigate()
+
+function handleBodyColor () {
+    document.body.classList = '';
+    navigate('/');
+}
 
     return (
         <HeaderWeatherApp>
             {location === '/city' ? (
-            <Header_text onClick={() => navigate('/')}>WEATHER APP</Header_text>
+            <Header_text onClick={handleBodyColor}>WEATHER APP</Header_text>
             ) : 
             
             <Header_logo src={require("../img/logo.png")} alt="" />
