@@ -82,18 +82,21 @@ const IconResetFilter = styled(BsArrowRepeat) `
 export default function Home () {
     let location = useLocation ()
     const [isAddInput, setIsAddInput] = useState(false)
-
+    const [isFilterInput, setIsFilterInput] = useState(false)
+    document.body.classList = '';
     setBodyColor('weather')
   
     return (
         <>
         
         <HomeContainer>
-            <HomeTitle>WEATHER APP</HomeTitle>
+            <HomeTitle>GIULIACCI APP</HomeTitle>
+            {/* <img src={require('../img/mario-giuliacci-PhotoRoom.png-PhotoRoom.png')} style={{'max-width': '250px','margin': '0 auto'}}/> */}
             <HomeContainer_form>
                 <ButtonContainer>
                 <button onClick={() => setIsAddInput(!isAddInput)}> Aggiungi città</button>
                 <button> Aggiungi posizione</button>
+                <button onClick={() => setIsFilterInput(!isFilterInput)}> Filtra </button>
                 </ButtonContainer>
                 {isAddInput && (
                     <InputContainer>
@@ -101,10 +104,12 @@ export default function Home () {
                     <IconSearch />
                     </InputContainer>
                 )}
+                {isFilterInput && (
                 <InputContainer>
                 <Input type="search" placeholder='filtra'/>
                  < IconResetFilter  />
                 </InputContainer>
+                )}
             </HomeContainer_form>
         </HomeContainer>
 

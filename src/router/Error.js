@@ -18,7 +18,7 @@ const ErrorImg = styled(TiWeatherShower) `
 `
 const ErrorText = styled.p `
     text-align: center;
-    color: ${props => props.theme.lightOne};
+    /* color: ${props => props.theme.lightOne}; */
     line-height: 1.5;
 `
 
@@ -31,7 +31,7 @@ const navigate = useNavigate()
         <h1>ERROR! </h1>
       
         <ErrorText> {error.message} </ErrorText>
-        <button onClick={() => navigate('/')}> GO HOME </button>
+        {/* <button onClick={() => navigate('/')}> GO HOME </button> */}
         </ErrorContainer>
     )
 }

@@ -34,6 +34,11 @@ const InfoCity = styled.article `
     align-items: center;
     position:relative;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+&&:hover {
+box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+
+}    
 `
 const ImgSelectedCity = styled.img `
     max-width: 25px;
@@ -82,16 +87,16 @@ const ButtonContainer = styled.div `
 
 
 export default function CityList () {
-    
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
-
+    
     return (
         
         
         <CityContainer>
             {cities.map((city, index) => {
                 let nameUI = cityUI(city.ico);
+                // console.log(cities[index++].coords)
                 
                 return (
 

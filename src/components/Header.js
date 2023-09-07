@@ -1,8 +1,10 @@
 
 import { styled } from 'styled-components'
 import {FiArrowRight} from 'react-icons/fi'
-import { useLocation, useNavigate } from 'react-router-dom'
-
+import {BiSolidHomeAlt2} from 'react-icons/bi'
+import { useLocation, useNavigate, redirect } from 'react-router-dom'
+import {cities} from '../mock/cities'
+import { useState } from 'react'
 const HeaderWeatherApp = styled.header `
     height: 80px;
     display: flex;
@@ -39,27 +41,46 @@ const Arrow = styled(FiArrowRight) `
     cursor: pointer;
     padding: 1rem;
 }
+&.rotate {
+    rotate: 180deg;
+}
 `
 
 export default function Header() {
     
     const location = useLocation().pathname
     const navigate = useNavigate()
+    
+    
+    const coords = cities.map((city) => city.coords)
+    let [index, setIndex] = useState(0)
 
+// click sul titolo quando sei nella rotta '/city'
 function handleClickHeaderText () {
-    document.body.classList = '';
-    navigate('/');
+    navigate('/')
+    setIndex(0)
+}
+
+// click sulla freccia a destra/sinistra per scorrere il meteo delle città
+function handleClickCityPage () {
+    if(index < coords.length){
+        setIndex(index + 1)
+        navigate(`/city?lat=${coords[index].lat}&lon=${coords[index].lon}`);
+    } else  {
+       navigate('/')
+       setIndex(0)
+    }  
+    return index 
 }
 
     return (
         <HeaderWeatherApp>
             {location === '/city' ? (
-            <Header_text onClick={handleClickHeaderText}>WEATHER APP</Header_text>
-            ) : 
-            
+            <Header_text onClick={handleClickHeaderText}> Giuliacci App </Header_text>
+            ) :   
             <Header_logo src={require("../img/logo.png")} alt="" />
             }
-            <Arrow/>
+            <Arrow onClick={handleClickCityPage} className={index === coords.length ?'rotate' : ''}/>
         </HeaderWeatherApp>
     )
 }

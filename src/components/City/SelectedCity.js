@@ -79,7 +79,7 @@ export default function SelectedCity ({coords}) {
 console.log(coords)
 let city = cities.filter(city => city.coords.lat === Number(coords.lat))
 console.log(city)
-
+document.body.classList = '';
     let nameUI = cityUI(city[0].ico)
     setBodyColor(nameUI)
 
