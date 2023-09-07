@@ -77,8 +77,8 @@ const TemperatureParams = styled.p `
 `
 
 export default function WeatherDay ({coords}) {
-    let location = useLocation().pathname    
-    console.log(Math.ceil(currentWeather.main.temp))
+    
+    
     let city = cities.filter(city => city.coords.lat === Number(coords.lat))
     
     document.body.classList = '';

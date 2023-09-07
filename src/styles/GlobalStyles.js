@@ -47,6 +47,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
     }
 
+
     .weather {
         background-image: ${props => props.theme.shadeOne};
         background-size: cover;
