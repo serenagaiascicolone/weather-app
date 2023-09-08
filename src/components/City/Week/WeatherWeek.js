@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { format, formatDistance, formatRelative, subDays } from "date-fns"
+import { format } from "date-fns"
 import forecast from './../../../mock/forecast';
 import { it } from "date-fns/locale";
 import { cityUI } from "../../../utilities/cityUI";
@@ -59,7 +59,6 @@ const Image = styled.img `
 export default function WeatherWeek () {
     let timezone = forecast.city.timezone
     let day = format(new Date(), 'EEE', {locale: it}) //ven => venerdì
-    let test = format(new Date(), 'dd/MM', {locale: it}) //08/09 => 8 SETTEMBRE
     let count;
     console.log(forecast.list)
     
@@ -83,6 +82,7 @@ export default function WeatherWeek () {
         return false; // scarto tutti gli altri valori
     })
     .map(element => { // mappo i valori rimasti e creo la UI 
+        console.log(element.main.temp_min)
         let tempMax = Math.ceil(element.main.temp_max);
         let tempMin = Math.ceil(element.main.temp_min);
         let day = format(new Date(element.dt * 1000), 'EEE', {locale: it});

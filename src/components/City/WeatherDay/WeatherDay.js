@@ -4,8 +4,8 @@ import { cityUI } from '../../../utilities/cityUI';
 import { cities } from '../../../mock/cities';
 import setBodyColor from '../../../utilities/bodyColor';
 import { useLocation } from 'react-router-dom';
-
-
+import { format } from 'date-fns';
+import { it } from 'date-fns/locale';
 const WeatherDayContainer = styled.article `
 /* background-image: none ; */
     display: flex;
@@ -44,6 +44,7 @@ const CityName = styled.h2 `
 const Day = styled.h3 `
     font-family: ${props => props.theme.fontSecondary};
     font-size: 1.5rem;
+    text-transform: capitalize;
     
 `
 
@@ -60,12 +61,7 @@ const ImageWeather = styled.img `
     box-shadow: 5px 5px 12px 20px white;
     background-color: white; */
 `
-const TemperatureContainer = styled.div `
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
+
 const Temperature = styled.h1 `
     margin: 3rem auto 0 auto;;
     font-size: 4rem;
@@ -77,12 +73,12 @@ const TemperatureParams = styled.p `
 `
 
 export default function WeatherDay ({coords}) {
-    
-    
+    let timezone = currentWeather.timezone
+    let day = format(new Date(currentWeather.dt + timezone)* 1000, 'EEEE, d', {locale: it} )
     let city = cities.filter(city => city.coords.lat === Number(coords.lat))
     
     document.body.classList = '';
-        let nameUI = cityUI(city[0].ico)
+        let nameUI = cityUI(currentWeather.weather[0].icon)
         setBodyColor(nameUI)
     
     return (
@@ -90,9 +86,9 @@ export default function WeatherDay ({coords}) {
         <WeatherDay_Header>
             <CityContainer>
             <ImageCity src={require('../../../img/city.png')} alt="" />
-            <CityName>{city[0].name}</CityName>                
+            <CityName>{currentWeather.name}</CityName>                
             </CityContainer>
-                <Day> Lunedì 04 </Day>
+                <Day> {day} </Day>
         </WeatherDay_Header>
         <ImageWeatherContainer>
             <ImageWeather src={require(`../../../img/weather-img/${nameUI}.png`)} alt="" />

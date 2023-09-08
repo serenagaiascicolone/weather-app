@@ -10,7 +10,7 @@ const HeaderWeatherApp = styled.header `
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: ${props => props.theme.lightOne}; */
+    margin: 0 1rem;
 `
 const Header_text = styled.h2 `
     margin: 0;

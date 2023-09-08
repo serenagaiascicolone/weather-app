@@ -1,42 +1,46 @@
-export const currentWeather = {
+export const currentWeather = 
+{
     "coord": {
         "lon": 14.1952,
         "lat": 37.0769
     },
     "weather": [
         {
-            "id": 802,
+            "id": 804,
             "main": "Clouds",
-            "description": "scattered clouds",
-            "icon": "03d"
+            "description": "overcast clouds",
+            "icon": "04d"
         }
     ],
     "base": "stations",
     "main": {
-        "temp": 26.91,
-        "feels_like": 28.63,
-        "temp_min": 24.32,
-        "temp_max": 28.59,
-        "pressure": 1010,
-        "humidity": 69
+        "temp": 27.24,
+        "feels_like": 28.81,
+        "temp_min": 25.82,
+        "temp_max": 27.41,
+        "pressure": 1013,
+        "humidity": 65,
+        "sea_level": 1013,
+        "grnd_level": 1013
     },
     "visibility": 10000,
     "wind": {
-        "speed": 4.63,
-        "deg": 50
+        "speed": 1.26,
+        "deg": 223,
+        "gust": 3.66
     },
     "clouds": {
-        "all": 40
+        "all": 100
     },
-    "dt": 1694104400, //data
+    "dt": 1694190921,
     "sys": {
-        "type": 1,
-        "id": 6711,
+        "type": 2,
+        "id": 2003033,
         "country": "IT",
-        "sunrise": 1694061514,
-        "sunset": 1694107479
+        "sunrise": 1694147962,
+        "sunset": 1694193788
     },
-    "timezone": 7200, //
+    "timezone": 7200,
     "id": 2524653,
     "name": "Gela",
     "cod": 200

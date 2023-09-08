@@ -1,13 +1,16 @@
 import { styled } from 'styled-components';
-
 import setBodyColor from '../utilities/bodyColor';
-
-
 import {BsArrowRepeat} from 'react-icons/bs'
 import {FiSearch} from 'react-icons/fi'
 import CityList from '../components/City/CityList';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { addedCity } from "../features/citiesSlice"
+import { selectCities } from "../features/citiesSlice"
+import {useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
+import { nanoid } from 'nanoid';
+
 
 const HomeContainer = styled.main `
     display: flex;
@@ -80,12 +83,35 @@ const IconResetFilter = styled(BsArrowRepeat) `
 `
 
 export default function Home () {
-    let location = useLocation ()
     const [isAddInput, setIsAddInput] = useState(false)
     const [isFilterInput, setIsFilterInput] = useState(false)
+    
+    const searchRef = useRef()
+    
     document.body.classList = '';
     setBodyColor('weather')
-  
+    
+    
+    //salvo le città aggiunte
+    let cityAdded = useSelector(selectCities)
+    useEffect(() => {
+        localStorage.setItem('cityList', JSON.stringify(cityAdded))
+    },[cityAdded])
+    let dispatch = useDispatch();
+    
+
+    // dispatch 
+      function handleAddedCity (){
+          let city = {
+              id: nanoid(),
+              name: searchRef.current.value,
+              coords: {
+                  lat: 45.4628562,
+                  lon: 9.0129209,
+                }
+            }
+        dispatch(addedCity(city))
+      }
     return (
         <>
         
@@ -100,8 +126,8 @@ export default function Home () {
                 </ButtonContainer>
                 {isAddInput && (
                     <InputContainer>
-                    <Input type="text" placeholder='cerca'/>
-                    <IconSearch />
+                    <Input type="text" placeholder='cerca' ref={searchRef}/>
+                    <IconSearch onClick={handleAddedCity}/>
                     </InputContainer>
                 )}
                 {isFilterInput && (

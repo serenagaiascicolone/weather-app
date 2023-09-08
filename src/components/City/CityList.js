@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {HiArrowDown} from 'react-icons/hi'
 import {HiArrowNarrowUp} from 'react-icons/hi'
 
@@ -90,6 +90,8 @@ export default function CityList () {
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
     
+  
+
     return (
         
         

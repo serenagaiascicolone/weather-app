@@ -65,14 +65,9 @@ let hourForecast = forecast.list.map(element => {
             <h3>  Previsione Oraria </h3> 
         </HourHeader>
         <ScrollContainer>
-
-        <HourContainer>
-           
-            {hourForecast}
-         
-       
+        <HourContainer>          
+           {hourForecast}        
         </HourContainer>
-
         </ScrollContainer>
         </>
     )
