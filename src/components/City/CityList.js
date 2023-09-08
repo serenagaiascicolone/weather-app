@@ -101,7 +101,7 @@ export default function CityList () {
                 return (
 
                         <InfoCityContainer key={city.id} >   
-                            <InfoCity className={nameUI}>
+                            <InfoCity>
                                 <span>
                                 <h3> {city.name}</h3>
                                 <p>{city.date}</p>
