@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { currentWeather } from '../../../mock/currentWeather';
 
+//TODO: sistemare larghezza articoli con calc 
 const DetailsContainer = styled.div `
     display: flex;
     gap: 1.5rem;

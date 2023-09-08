@@ -2,6 +2,8 @@ import { styled } from "styled-components"
 import forecast  from "../../../../mock/forecast"
 import { cityUI } from "../../../../utilities/cityUI"
 import ScrollContainer from "react-indiana-drag-scroll"
+import { format } from "date-fns"
+import { it } from "date-fns/locale";
 
 const HourHeader = styled.div `
     display: flex;
@@ -16,7 +18,6 @@ const HourContainer = styled.div `
         gap: 1rem;
         margin: 1rem;
   
-
 `
 const HourArticle = styled.article `
     display: flex;
@@ -40,15 +41,18 @@ const Temperature = styled.h2 ``
 
 
 export default function HourForecast () {
+let timezone = forecast.city.timezone;
+
+
 let hourForecast = forecast.list.map(element => {
     let temp = element.main.temp;
-    let day = '';
-    let time = '';
+    let dayAndMounth = format(new Date((element.dt + timezone)*1000), 'dd/MM', {locale: it});
+    let time = format(new Date((element.dt + timezone)*1000), 'kk:mm');
     let nameUI = cityUI(element.weather[0].icon)
     return (
         <HourArticle>
-        <Day> 09/04/23</Day>
-        <Time> 09.45</Time>
+        <Day> {dayAndMounth}</Day>
+        <Time> {time}</Time>
         <Image src={require(`../../../../img/ico/${nameUI}.png`)} alt="" />
         <Temperature> {Math.ceil(temp)}° </Temperature>
     </HourArticle>
