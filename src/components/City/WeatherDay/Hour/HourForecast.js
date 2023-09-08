@@ -2,12 +2,13 @@ import { styled } from "styled-components"
 import forecast  from "../../../../mock/forecast"
 import { cityUI } from "../../../../utilities/cityUI"
 import ScrollContainer from "react-indiana-drag-scroll"
+
 const HourHeader = styled.div `
     display: flex;
     gap: 0.2rem;
     /* align-items: center; */
     width: 100%;
-    margin: 1rem;
+    margin: 1rem 1rem 0 1.5rem;
 `
 
 const HourContainer = styled.div `
