@@ -3,19 +3,23 @@ import { useEffect, useState } from "react"
 import {HiArrowDown} from 'react-icons/hi'
 import {HiArrowNarrowUp} from 'react-icons/hi'
 
-import { cities } from "../../mock/cities"
+// import { cities } from "../../mock/cities"
 import { useNavigate } from "react-router-dom"
 import {cityUI} from '../../utilities/cityUI'
+import { useGetWeatherByCoordsQuery } from "../../features/weatherApi"
+import { removeCity } from "../../features/citiesSlice"
+
+import { format } from "date-fns"
+import { useDispatch } from 'react-redux';
 
 
 
-const CityContainer = styled.div `
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100vh;
+
+const ContentMessage = styled.h3 `
+    width: 100%;
+    text-align: center;
+
 `
-
 const InfoCityContainer = styled.section `
     display: flex;
     flex-direction: column;
@@ -84,32 +88,40 @@ const ButtonContainer = styled.div `
 `
 
 
-
-
-export default function CityList () {
+export default function CityList ({city, index}) {
+    let time =  format ((new Date()), 'k:mm')
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
+    let dispatch = useDispatch()
     
-  
+    // dati meteo 
+    let {data, isLoading, error} = useGetWeatherByCoordsQuery(city.coords)
 
-    return (
-        
-        
-        <CityContainer>
-            {cities.map((city, index) => {
-                let nameUI = cityUI(city.ico);
-                // console.log(cities[index++].coords)
-                
-                return (
+    
+    // contenuto dinamico della pagina
+    let content = ''
+    
+    if(isLoading) {
+        content = <ContentMessage> Loading...</ContentMessage>
+    }
+    
+    if(error) {
+        content = <ContentMessage> Errore! </ContentMessage>
+    }
 
-                        <InfoCityContainer key={city.id} >   
-                            <InfoCity>
+    if(data){
+        let nameUI = cityUI(data.weather[0].icon);
+        content = (
+
+                        <InfoCityContainer  > 
+                        
+                             <InfoCity key={data.id}>
                                 <span>
-                                <h3> {city.name}</h3>
-                                <p>{city.date}</p>
+                                <h3> {data.name}</h3>
+                                <p>{time}</p>
                                 </span>
                                 <span>
-                                <h2>{city.temperature}°</h2>
+                                <h2>{Math.ceil(data.main.temp)}°</h2>
                                 <ImgSelectedCity src={require(`../../img/ico/${nameUI}.png`)} alt="" />
                                 </span>
                                 <ArrowDown 
@@ -123,17 +135,19 @@ export default function CityList () {
                             {isButtonContainerView === index &&  (
                                 <>
                                 <ButtonContainer>
-                                    <button> Cancella </button>
+                                    <button onClick={() => (dispatch(removeCity(city.id)))}> Cancella </button>
                                 <button onClick={() => navigate(`/city?lat=${city.coords.lat}&lon=${city.coords.lon}`)}> Dettagli meteo </button>
                                 </ButtonContainer>       
                                 </>
 
                             )}
-                        </InfoCityContainer>          
-
-                )
-            })}
-</CityContainer>
+                        </InfoCityContainer>           
+        )
+    }
+    return (
+        <>
+            {content}
+        </>
     )
 
 }

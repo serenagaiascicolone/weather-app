@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-let savedCityList = localStorage.getItem('cityList');
+let savedCityList = localStorage.getItem('weatherList');
 let initialCities = JSON.parse(savedCityList)
-
+console.log(savedCityList)
 
 const initialState = initialCities || []
 

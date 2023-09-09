@@ -66,6 +66,13 @@ export default function WeatherTodayDetails () {
                 </DetailsText>
                 
             </DetailsArticle>
+            <DetailsArticle>
+            <DetailsText>
+                    <h4> Pressione atmosferica </h4>
+                    <h2> {main.pressure} hPa</h2>             
+                </DetailsText>
+                
+            </DetailsArticle>
 
         </DetailsContainer>
         

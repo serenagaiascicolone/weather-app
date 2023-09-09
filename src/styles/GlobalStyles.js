@@ -8,8 +8,9 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: ${props => props.theme.brightOne};
-        /* background-image: ${props => props.theme.shadeOne}; */
+        /* background-color: ${props => props.theme.brightOne}; */
+        background-image: ${props => props.theme.shadeOne};
+        background-size: cover;
         background-size: cover;
         font-family: ${props => props.theme.fontPrimary};
         // font-family:'Bebas Neue', sans-serif;
@@ -48,10 +49,10 @@ const GlobalStyles = createGlobalStyle`
     }
 
 
-    .weather {
+    /* .weather {
         background-image: ${props => props.theme.shadeOne};
         background-size: cover;
-    }
+    } */
 
     .sun {
         background-image: ${props => props.theme.shadeTwo};

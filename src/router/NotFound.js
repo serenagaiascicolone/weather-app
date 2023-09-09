@@ -16,7 +16,7 @@ const NotFoundImg = styled(TiWeatherStormy) `
 `
 const NotFoundText = styled.p `
     text-align: center;
-    color: ${props => props.theme.lightOne};
+    /* color: ${props => props.theme.lightOne}; */
     line-height: 1.5;
 `
 export default function NotFound () {
