@@ -8,8 +8,8 @@ import {useDispatch} from "react-redux"
 import { nanoid } from 'nanoid';
 import { weatherApi } from './../features/weatherApi';
 import CityListContainer from '../components/City/CityListContainer';
-
-
+import { setTextFilter } from '../features/filtersSlice';
+import { selectFilters } from '../features/filtersSlice';
 
 const HomeContainer = styled.main `
     display: flex;
@@ -86,7 +86,8 @@ export default function Home () {
     const [isFilterInput, setIsFilterInput] = useState(false)
     // const [location, setLocation] = useState({lat: 0, lon: 0})
     const searchRef = useRef()
-    
+    const filterRef = useRef()
+    const [isFilterCity, setIsFilterCity] = useState(false)
     document.body.classList = '';
 
     
@@ -109,6 +110,20 @@ export default function Home () {
         searchRef.current.value = ''
       }
 
+      // filtro le città salvate 
+      function handleFilterCities () {
+          let cityFiltered = filterRef.current.value;
+          dispatch(setTextFilter(cityFiltered))
+          console.log(filterRef.current.value)
+          setIsFilterCity(true)
+        }
+        
+        
+        function handleResetFilter () {
+        filterRef.current.value = ''
+        setIsFilterCity(false)
+      }
+
     return (
         <> 
         <HomeContainer>
@@ -128,14 +143,17 @@ export default function Home () {
                 )}
                 {isFilterInput && (
                 <InputContainer>
-                <Input type="search" placeholder='filtra'/>
-                 < IconResetFilter/>
+                <Input type="search" placeholder='filtra' ref={filterRef} onChange={handleFilterCities}/>
+                 < IconResetFilter onClick={handleResetFilter}/>
                 </InputContainer>
                 )}
             </HomeContainer_form>
         </HomeContainer>
 
-                <CityListContainer cityAdded={cityAdded}/> 
+                <CityListContainer 
+                cityAdded={cityAdded}
+                isFilterCity={isFilterCity}
+                /> 
         </>
   
     )

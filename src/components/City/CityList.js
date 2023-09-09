@@ -89,7 +89,7 @@ const ButtonContainer = styled.div `
 
 
 export default function CityList ({city, index}) {
-    let time =  format ((new Date()), 'k:mm')
+    let time =  format ((new Date()), 'HH:mm')
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
     let dispatch = useDispatch()
