@@ -4,6 +4,7 @@ import WeatherDay from "./WeatherDay/WeatherDay"
 import WeatherTodayDetails from "./WeatherDay/WeatherTodayDetails"
 import WeatherWeek from "./Week/WeatherWeek"
 import { useGetForecastByCoordsQuery } from "../../features/weatherApi"
+import LoaderSpinner from "../LoaderSpinner"
 
 
 
@@ -18,7 +19,9 @@ export default function SelectedCity ({coords}) {
     }
 
     if(isLoading) {
-        content = <h3> Loading ...</h3>
+        content = (
+            <LoaderSpinner />
+        )
     }
 
     if(data){

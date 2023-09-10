@@ -6,8 +6,11 @@ const CityContainer = styled.div `
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 100vh;
     margin-bottom: 1rem; 
+	@media (min-width: 996px) {
+        width: 70%;
+        margin: 0 auto; 
+    }
 `
 
 const Message = styled.h4 `

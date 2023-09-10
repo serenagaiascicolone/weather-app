@@ -30,7 +30,7 @@ const Header_logo = styled.img `
     padding: 2rem;
 `
 const LogoText = styled.img `
-    max-width: 250px;
+    max-width: 50%;
     margin-top: 1rem;
     padding: 0;
 &&:hover {

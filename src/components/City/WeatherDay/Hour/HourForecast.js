@@ -11,12 +11,21 @@ const HourHeader = styled.div `
     /* align-items: center; */
     width: 100%;
     margin: 1rem 1rem 0 1.5rem;
+@media (min-width: 996px) {
+    justify-content: center;    
+    }
+
 `
 
 const HourContainer = styled.div `
         display: flex;
         gap: 1rem;
         margin: 1rem;
+/* @media (min-width: 996px) { 
+        width: 70%;
+        margin: 1rem auto;
+        } */
+
   
 `
 const HourArticle = styled.article `

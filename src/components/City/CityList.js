@@ -12,6 +12,7 @@ import { removeCity } from "../../features/citiesSlice"
 
 import { format } from "date-fns"
 import { useDispatch } from 'react-redux';
+import LoaderSpinner from './../LoaderSpinner';
 
 
 
@@ -104,7 +105,10 @@ export default function CityList ({city, index, location}) {
     let content = ''
     
     if(isLoading) {
-        content = <ContentMessage> Loading...</ContentMessage>
+        // content = <ContentMessage> Loading...</ContentMessage>
+        content = (
+            <LoaderSpinner />
+        )
     }
     
     if(error) {

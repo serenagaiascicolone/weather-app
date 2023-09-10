@@ -10,6 +10,9 @@ const WeekHeader = styled.div `
     /* align-items: center; */
     width: 100%;
     margin: 1rem 1rem 0 1.5rem;
+	@media (min-width: 996px) {
+        justify-content: center;
+    }
 `
 
 const WeekContainer = styled.div `

@@ -74,7 +74,10 @@ const TemperatureParams = styled.p `
 export default function WeatherDay ({coords, city, currentWeather}) {
     // let timezone = city.timezone
     console.log(city.dt)
-    let day = format(new Date((currentWeather.dt + city.timezone) * 1000), 'EEEE, d', {locale: it})
+    let day = format(
+		(new Date().getTime() + (city.timezone * 1000)),
+		'EEEE d', {locale: it});
+    // let day = format(new Date().getTime() + (city.timezone * 1000)), 'EEEE, d | hh:mm', {locale: it})
     // let city = cities.filter(city => city.coords.lat === Number(coords.lat))
     console.log(day)
     document.body.classList = '';
