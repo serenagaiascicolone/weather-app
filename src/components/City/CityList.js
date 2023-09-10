@@ -2,6 +2,7 @@ import { styled } from "styled-components"
 import { useEffect, useState } from "react"
 import {HiArrowDown} from 'react-icons/hi'
 import {HiArrowNarrowUp} from 'react-icons/hi'
+import {GiPositionMarker} from 'react-icons/gi'
 
 // import { cities } from "../../mock/cities"
 import { useNavigate } from "react-router-dom"
@@ -88,7 +89,7 @@ const ButtonContainer = styled.div `
 `
 
 
-export default function CityList ({city, index}) {
+export default function CityList ({city, index, location}) {
     let time =  format ((new Date()), 'HH:mm')
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
@@ -117,7 +118,7 @@ export default function CityList ({city, index}) {
                         
                              <InfoCity key={data.id}>
                                 <span>
-                                <h3> {data.name}</h3>
+                                <h3> {city.position ? <GiPositionMarker /> : ''} {data.name}</h3>
                                 <p>{time}</p>
                                 </span>
                                 <span>

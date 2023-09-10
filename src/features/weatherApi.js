@@ -14,7 +14,7 @@ export const weatherApi = createApi ({
         getCoordinatesByCityName: builder.query({
             async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
                 // seconda parte URL (query) che cambia in base alla fetch che richiediamo
-                const coordsResult = await fetchWithBQ(`geo/1.0/direct?q=${_arg.name}&limit=1&appid=${process.env.REACT_APP_OPENWEATHER_API}`);
+                const coordsResult = await fetchWithBQ(`geo/1.0/direct?q=${_arg.name}&limit=1&lang=it&appid=${process.env.REACT_APP_OPENWEATHER_API}`);
 
                 if(coordsResult.error) return {error:coordsResult.error}
 
@@ -34,27 +34,26 @@ export const weatherApi = createApi ({
         }),
         getCityNameByCoordinates: builder.query({
             async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
-                const cityResult = await fetchWithBQ(`eo/1.0/reverse?lat=${_arg.coords.lat}&lon=${_arg.coords.lon}&limit=1&appid=${process.env.REACT_APP_OPENWEATHER_API}`);
+                const cityResult = await fetchWithBQ(`geo/1.0/reverse?lat=${_arg.coords.lat}&lon=${_arg.coords.lon}&limit=1&lang=it&appid=${process.env.REACT_APP_OPENWEATHER_API}`);
                 if(cityResult.error) return {error: cityResult.error}
                 const city = {
                     id: _arg.id,
                     name: cityResult.data[0].name,
-                    coords: {
-                        lat: cityResult.data[0].lat,
-                        lon: cityResult.data[0].lon
+                    coords: _arg.coords,
+                    position: true,
                     }
-                }
-                _queryApi.dispatch(addedCity(city));
+                    _queryApi.dispatch(addedCity(city));
+                
                 return cityResult.data ? city : {error: cityResult.error}
             }
         }),
         // con questa chiamata prendiamo il meteo giornaliero delle città salvate in local storage 
             getWeatherByCoords: builder.query({
-            query: (coords) => `data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${process.env.REACT_APP_OPENWEATHER_API}&units=metric`,
+            query: (coords) => `data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&lang=it&appid=${process.env.REACT_APP_OPENWEATHER_API}&units=metric`,
         
         }),
     })
 })
 
 
-export const {useGetCoordinatesByCityNameQuery, useGetWeatherByCoordsQuery} = weatherApi
+export const {useGetCoordinatesByCityNameQuery, useGetWeatherByCoordsQuery, useGetCityNameByCoordinatesQuery} = weatherApi

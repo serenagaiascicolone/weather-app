@@ -2,14 +2,14 @@ import { styled } from 'styled-components';
 import {BsArrowRepeat} from 'react-icons/bs'
 import {FiSearch} from 'react-icons/fi'
 import { useState, useRef, useEffect } from 'react';
-import { selectCities } from "../features/citiesSlice"
+import { addedCity, selectCities } from "../features/citiesSlice"
 import {useSelector} from "react-redux"
 import {useDispatch} from "react-redux"
 import { nanoid } from 'nanoid';
-import { weatherApi } from './../features/weatherApi';
+import { useGetCityNameByCoordinatesQuery, weatherApi } from './../features/weatherApi';
 import CityListContainer from '../components/City/CityListContainer';
 import { setTextFilter } from '../features/filtersSlice';
-import { selectFilters } from '../features/filtersSlice';
+
 
 const HomeContainer = styled.main `
     display: flex;
@@ -25,14 +25,18 @@ const HomeContainer = styled.main `
 const HomeTitle = styled.h1 `
     letter-spacing: 0.5rem;
 `
-
+const LogoText = styled.img `
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 0;
+`
+const HomeImgContainer = styled.div `
+    max-width: 100%;
+`
 const HomeImg = styled.img `  
-    max-width: 250px;
+    max-width: 100%;
     margin: 0px auto;
     height: 250px;
-&.title {
-    height: auto; 
-}
 `
 
 const HomeContainer_form= styled.main `
@@ -46,12 +50,12 @@ const HomeContainer_form= styled.main `
 
 const ButtonContainer = styled.div `
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
 `
 
 const InputContainer= styled.div`
-
         display: flex;
         /* flex-direction: column; */
         gap: 0.5rem;
@@ -111,11 +115,12 @@ export default function Home () {
     
     // dispatch 
       function handleAddedCity (){
-        let cityId = nanoid();
-        dispatch(weatherApi.endpoints.getCoordinatesByCityName.initiate({
+        // let cityId = nanoid();
+        let city = {
             name: searchRef.current.value,
-            id: cityId, 
-        }))
+            id: nanoid()
+        }
+        dispatch(weatherApi.endpoints.getCoordinatesByCityName.initiate(city))
         searchRef.current.value = ''
       }
 
@@ -133,16 +138,49 @@ export default function Home () {
         setIsFilterCity(false)
       }
 
-    return (
+      //aggiungo posizione
+      const [location, setLocation] = useState( {lat: 0, lon: 0});
+
+      useEffect(()=> {
+          const onSuccess = (position) => {   
+              setLocation({
+                  lat: position.coords.latitude,
+                    lon: position.coords.longitude
+              })  
+                };
+            const onError = (error) => {
+                return error.message
+            }
+        navigator.geolocation.getCurrentPosition(onSuccess, onError)
+      }, [])
+
+  
+      // utilizzo il secondo reducerPath di weatherApi
+      function HandleAddPosition () {
+        let city = {
+            id: nanoid(),
+            coords: {
+                lat: location.lat,
+                lon: location.lon
+            }
+        }
+            dispatch(weatherApi.endpoints.getCityNameByCoordinates.initiate(city))
+        }
+            
+
+    
+        return (
         <> 
         <HomeContainer>
             {/* <HomeTitle>GIULIACCI APP</HomeTitle> */}
-            <HomeImg src={require('../img/logo2.png')} className='title'/>
-            <HomeImg src={require('../img/giuliacci.png')} style={{'max-width': '250px','margin': '0 auto'}}/>
+            <LogoText src={require('../img/logo2.png')}/>
+            <HomeImgContainer>
+                <HomeImg src={require('../img/giuliacci.png')}/>
+            </HomeImgContainer>
             <HomeContainer_form>
                 <ButtonContainer>
                 <button onClick={() => setIsAddInput(!isAddInput)}> Aggiungi città</button>
-                <button> Aggiungi posizione</button>
+                <button onClick={HandleAddPosition}> Aggiungi posizione</button>
                 <button onClick={() => setIsFilterInput(!isFilterInput)}> Filtra </button>
                 </ButtonContainer>
                 {isAddInput && (
@@ -163,6 +201,7 @@ export default function Home () {
                 <CityListContainer 
                 cityAdded={cityAdded}
                 isFilterCity={isFilterCity}
+                location = {location}
                 /> 
         </>
   

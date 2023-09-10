@@ -14,7 +14,7 @@ const Message = styled.h4 `
     text-align: center;
 `
 
-export default function CityListContainer ({cityAdded, isFilterCity}) {
+export default function CityListContainer ({cityAdded, isFilterCity, location}) {
     let filteredCity = useSelector(selectFilters)
     let filteredCityList = cityAdded.filter(city => city.name.toLowerCase() === filteredCity.toLowerCase())
 
@@ -34,7 +34,11 @@ export default function CityListContainer ({cityAdded, isFilterCity}) {
                 cityAdded.map((city, index) => {
                     return (
                      
-                            <CityList city={city} index={index}/>
+                            <CityList 
+                            city={city} 
+                            index={index}
+                            location={location} 
+                            />
                             )
                         })
                         ) 
