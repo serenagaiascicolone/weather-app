@@ -1,10 +1,11 @@
 
 import { styled } from 'styled-components'
 import {FiArrowRight} from 'react-icons/fi'
-import {BiSolidHomeAlt2} from 'react-icons/bi'
 import { useLocation, useNavigate, redirect } from 'react-router-dom'
-import {cities} from '../mock/cities'
 import { useState } from 'react'
+import { selectCities } from '../features/citiesSlice'
+import { useSelector } from 'react-redux';
+
 const HeaderWeatherApp = styled.header `
     height: 80px;
     display: flex;
@@ -59,7 +60,7 @@ export default function Header() {
     
     const location = useLocation().pathname
     const navigate = useNavigate()
-    
+    const cities = useSelector(selectCities)
     
     const coords = cities.map((city) => city.coords)
     let [index, setIndex] = useState(0)
@@ -85,7 +86,6 @@ function handleClickCityPage () {
     return (
         <HeaderWeatherApp>
             {location === '/city' ? (
-            // <Header_text onClick={handleClickHeaderText}> Giuliacci App </Header_text>
             <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
             ) :   
             <Header_logo src={require("../img/logo.png")} alt="" />

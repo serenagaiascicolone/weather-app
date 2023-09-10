@@ -1,5 +1,4 @@
 import { styled } from 'styled-components'
-import {currentWeather} from '../../../mock/currentWeather'
 import { cityUI } from '../../../utilities/cityUI';
 import { cities } from '../../../mock/cities';
 import setBodyColor from '../../../utilities/bodyColor';
@@ -72,11 +71,12 @@ const TemperatureParams = styled.p `
     margin: 0 auto 0 auto;;
 `
 
-export default function WeatherDay ({coords}) {
-    let timezone = currentWeather.timezone
-    let day = format(new Date(currentWeather.dt + timezone)* 1000, 'EEEE, d', {locale: it} )
-    let city = cities.filter(city => city.coords.lat === Number(coords.lat))
-    
+export default function WeatherDay ({coords, city, currentWeather}) {
+    // let timezone = city.timezone
+    console.log(city.dt)
+    let day = format(new Date((currentWeather.dt + city.timezone) * 1000), 'EEEE, d', {locale: it})
+    // let city = cities.filter(city => city.coords.lat === Number(coords.lat))
+    console.log(day)
     document.body.classList = '';
         let nameUI = cityUI(currentWeather.weather[0].icon)
         setBodyColor(nameUI)
@@ -86,9 +86,9 @@ export default function WeatherDay ({coords}) {
         <WeatherDay_Header>
             <CityContainer>
             <ImageCity src={require('../../../img/city.png')} alt="" />
-            <CityName>{currentWeather.name}</CityName>                
+            <CityName>{city.name}</CityName>                
             </CityContainer>
-                <Day> {day} </Day>
+                <Day> {day}</Day>
         </WeatherDay_Header>
         <ImageWeatherContainer>
             <ImageWeather src={require(`../../../img/weather-img/${nameUI}.png`)} alt="" />

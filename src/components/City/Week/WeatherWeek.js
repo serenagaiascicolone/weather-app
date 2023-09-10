@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { format } from "date-fns"
-import forecast from './../../../mock/forecast';
+
 import { it } from "date-fns/locale";
 import { cityUI } from "../../../utilities/cityUI";
 
@@ -56,14 +56,14 @@ const Image = styled.img `
 `
 
 
-export default function WeatherWeek () {
-    let timezone = forecast.city.timezone
+export default function WeatherWeek ({forecast, timezone}) {
+    // let timezone = forecast.city.timezone
     let day = format(new Date(), 'EEE', {locale: it}) //ven => venerdì
     let count;
     console.log(forecast.list)
     
     
-    let weekForecast = forecast.list
+    let weekForecast = forecast
     .filter(el => {
         let forecastDay = format(new Date((el.dt + timezone) * 1000), 'EEE', {locale: it} );
         let newDay = (forecastDay !== day) ? forecastDay : ''; // day = venerdì, in questo modo ho cancellato tutti i venerdì contenuti in forecast. Quindi newDay = sab, dom, lun, mart, merc

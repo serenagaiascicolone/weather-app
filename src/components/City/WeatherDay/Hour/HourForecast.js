@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import forecast  from "../../../../mock/forecast"
+// import forecast  from "../../../../mock/forecast"
 import { cityUI } from "../../../../utilities/cityUI"
 import ScrollContainer from "react-indiana-drag-scroll"
 import { format } from "date-fns"
@@ -40,11 +40,11 @@ const Image = styled.img `
 const Temperature = styled.h2 ``
 
 
-export default function HourForecast () {
-let timezone = forecast.city.timezone;
+export default function HourForecast ({forecast, timezone}) {
+// let timezone = forecast.city.timezone;
 
 
-let hourForecast = forecast.list.map(element => {
+let hourForecast = forecast.map(element => {
     let temp = element.main.temp;
     let dayAndMounth = format(new Date((element.dt + timezone)*1000), 'dd/MM', {locale: it});
     let time = format(new Date((element.dt + timezone)*1000), 'kk:mm');

@@ -90,7 +90,8 @@ const ButtonContainer = styled.div `
 
 
 export default function CityList ({city, index, location}) {
-    let time =  format ((new Date()), 'HH:mm')
+    // let time =  format ((new Date()), 'HH:mm')
+ 
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
     let navigate = useNavigate()
     let dispatch = useDispatch()
@@ -119,10 +120,11 @@ export default function CityList ({city, index, location}) {
                              <InfoCity key={data.id}>
                                 <span>
                                 <h3> {city.position ? <GiPositionMarker /> : ''} {data.name}</h3>
-                                <p>{time}</p>
+                                <p>   {format((new Date().getTime() + (data.timezone)),'HH:mm')}</p>
+                               
                                 </span>
                                 <span>
-                                <h2>{Math.ceil(data.main.temp)}°</h2>
+                                <h2>{Math.round(data.main.temp)}°</h2>
                                 <ImgSelectedCity src={require(`../../img/ico/${nameUI}.png`)} alt="" />
                                 </span>
                                 <ArrowDown 

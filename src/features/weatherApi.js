@@ -52,8 +52,12 @@ export const weatherApi = createApi ({
             query: (coords) => `data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&lang=it&appid=${process.env.REACT_APP_OPENWEATHER_API}&units=metric`,
         
         }),
+        // meteo settimanale e orario
+        getForecastByCoords: builder.query({
+            query: (coords) => `data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&lang=it&appid=${process.env.REACT_APP_OPENWEATHER_API}&units=metric`
+        })
     })
 })
 
 
-export const {useGetCoordinatesByCityNameQuery, useGetWeatherByCoordsQuery, useGetCityNameByCoordinatesQuery} = weatherApi
+export const {useGetCoordinatesByCityNameQuery, useGetWeatherByCoordsQuery, useGetCityNameByCoordinatesQuery, useGetForecastByCoordsQuery} = weatherApi

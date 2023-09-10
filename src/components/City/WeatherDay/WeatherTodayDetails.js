@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { currentWeather } from '../../../mock/currentWeather';
+
 
 //TODO: sistemare larghezza articoli con calc 
 const DetailsContainer = styled.div `
@@ -37,7 +37,7 @@ const DetailsText = styled.div `
     text-align: center;
 `
 
-export default function WeatherTodayDetails () {
+export default function WeatherTodayDetails ({currentWeather}) {
     
     let main = currentWeather.main
     // console.log(currentWeather.weather[0].description)
