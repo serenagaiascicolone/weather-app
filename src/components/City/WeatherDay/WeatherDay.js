@@ -12,7 +12,7 @@ const WeatherDayContainer = styled.article `
     width: 70%;
     margin: 4rem auto; 
     gap: 1rem;
-    height: 492px;
+    /* height: 492px; */
 `
 const WeatherDay_Header = styled.div `
     display: flex;
@@ -54,11 +54,6 @@ const ImageWeather = styled.img `
     display: flex;
     max-width: 200px;
     margin: 0 auto;
-    
-    /*TODO: da valutare*/ 
-    /* border-radius: 50%;
-    box-shadow: 5px 5px 12px 20px white;
-    background-color: white; */
 `
 
 const Temperature = styled.h1 `
@@ -72,13 +67,15 @@ const TemperatureParams = styled.p `
 `
 
 export default function WeatherDay ({coords, city, currentWeather}) {
-    // let timezone = city.timezone
+  
     console.log(city.dt)
+    // let day = format(
+	// 	(new Date().getTime() + (city.timezone * 1000)),
+	// 	'EEEE d',  {locale: it});
     let day = format(
-		(new Date().getTime() + (city.timezone * 1000)),
-		'EEEE d', {locale: it});
-    // let day = format(new Date().getTime() + (city.timezone * 1000)), 'EEEE, d | hh:mm', {locale: it})
-    // let city = cities.filter(city => city.coords.lat === Number(coords.lat))
+		(new Date().getTime() + (city.timezone)),
+		'EEEE d',  {locale: it});
+
     console.log(day)
     document.body.classList = '';
         let nameUI = cityUI(currentWeather.weather[0].icon)
@@ -96,10 +93,10 @@ export default function WeatherDay ({coords, city, currentWeather}) {
         <ImageWeatherContainer>
             <ImageWeather src={require(`../../../img/weather-img/${nameUI}.png`)} alt="" />
         </ImageWeatherContainer>
-        {/* <TemperatureContainer> */}
+     
         <Temperature>{Math.ceil(currentWeather.main.temp)}°</Temperature>
         <TemperatureParams>MIN {Math.ceil(currentWeather.main.temp_min)}° | MAX {Math.ceil(currentWeather.main.temp_max)}°  </TemperatureParams>
-        {/* </TemperatureContainer> */}
+
     </WeatherDayContainer>
     )
 }
