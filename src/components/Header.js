@@ -28,7 +28,16 @@ const Header_logo = styled.img `
     max-width: 50px;
     padding: 2rem;
 `
+const LogoText = styled.img `
+    max-width: 250px;
+    margin-top: 1rem;
+    padding: 0;
+&&:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
 
+`
 
 const Arrow = styled(FiArrowRight) `
     font-size: 1.5rem;
@@ -76,7 +85,8 @@ function handleClickCityPage () {
     return (
         <HeaderWeatherApp>
             {location === '/city' ? (
-            <Header_text onClick={handleClickHeaderText}> Giuliacci App </Header_text>
+            // <Header_text onClick={handleClickHeaderText}> Giuliacci App </Header_text>
+            <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
             ) :   
             <Header_logo src={require("../img/logo.png")} alt="" />
             }

@@ -26,6 +26,15 @@ const HomeTitle = styled.h1 `
     letter-spacing: 0.5rem;
 `
 
+const HomeImg = styled.img `  
+    max-width: 250px;
+    margin: 0px auto;
+    height: 250px;
+&.title {
+    height: auto; 
+}
+`
+
 const HomeContainer_form= styled.main `
     display: flex;
     flex-direction: column;
@@ -127,8 +136,9 @@ export default function Home () {
     return (
         <> 
         <HomeContainer>
-            <HomeTitle>GIULIACCI APP</HomeTitle>
-            {/* <img src={require('../img/mario-giuliacci-PhotoRoom.png-PhotoRoom.png')} style={{'max-width': '250px','margin': '0 auto'}}/> */}
+            {/* <HomeTitle>GIULIACCI APP</HomeTitle> */}
+            <HomeImg src={require('../img/logo2.png')} className='title'/>
+            <HomeImg src={require('../img/giuliacci.png')} style={{'max-width': '250px','margin': '0 auto'}}/>
             <HomeContainer_form>
                 <ButtonContainer>
                 <button onClick={() => setIsAddInput(!isAddInput)}> Aggiungi città</button>
