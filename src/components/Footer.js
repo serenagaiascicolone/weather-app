@@ -53,11 +53,15 @@ const CopyRightContainer = styled.span ``
 const CopyRight = styled.p `
     font-size: 0.8rem; 
 `
-export default function Footer () {
+export default function Footer ({isNight}) {
     return (
         <FooterContainer>
             <LogoContainer>
-                <LogoText src={require('../img/logo2.png')} alt="" />
+                {isNight ? (
+                    <LogoText src={require('../img/img-night/logo2white.png')} alt="" />
+                    ) : 
+                    <LogoText src={require('../img/logo2.png')} alt="" />    
+                }
             </LogoContainer>
             <InfoListContainer>
                 <List>

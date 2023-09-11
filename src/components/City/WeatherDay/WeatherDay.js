@@ -5,6 +5,7 @@ import setBodyColor from '../../../utilities/bodyColor';
 import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { it } from 'date-fns/locale';
+import { useState } from 'react';
 const WeatherDayContainer = styled.article `
 /* background-image: none ; */
     display: flex;
@@ -78,14 +79,28 @@ export default function WeatherDay ({coords, city, currentWeather}) {
 
     console.log(day)
     document.body.classList = '';
-        let nameUI = cityUI(currentWeather.weather[0].icon)
-        setBodyColor(nameUI)
+    let time = new Date("1995-12-25T23:15:30").getHours()
+    console.log(time)
+    // "1995-12-25T23:15:30"
+    const [isNight, setIsNight] = useState(time >= 20 || time < 6)
+    let nameUI = cityUI(currentWeather.weather[0].icon)
+    
+    if(isNight){
+        setBodyColor('night')
+    }else{
+        setBodyColor(nameUI) 
+    }
+
     
     return (
         <WeatherDayContainer>
         <WeatherDay_Header>
             <CityContainer>
-            <ImageCity src={require('../../../img/city.png')} alt="" />
+                {isNight ? (
+                    <ImageCity src={require('../../../img/img-night/city.png')} alt="" style={{'border-color' : 'white'}}/>
+                  ) : 
+                    <ImageCity src={require('../../../img/city.png')} alt="" />      
+            }
             <CityName>{city.name}</CityName>                
             </CityContainer>
                 <Day> {day}</Day>

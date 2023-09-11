@@ -37,7 +37,9 @@ const LogoText = styled.img `
     cursor: pointer;
     opacity: 0.7;
 }
-
+@media (min-width: 996px) { 
+    max-width: 250px;
+    }
 `
 
 const Arrow = styled(FiArrowRight) `
@@ -56,8 +58,8 @@ const Arrow = styled(FiArrowRight) `
 }
 `
 
-export default function Header() {
-    
+export default function Header({isNight}) {
+
     const location = useLocation().pathname
     const navigate = useNavigate()
     const cities = useSelector(selectCities)
@@ -85,12 +87,23 @@ function handleClickCityPage () {
 
     return (
         <HeaderWeatherApp>
-            {location === '/city' ? (
+
+            {/* {location === '/city'  && !isNight ? (
             <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
             ) :   
             <Header_logo src={require("../img/logo.png")} alt="" />
+            } */}
+            
+            {location === '/city' ? (
+                isNight ?
+            <LogoText src={require('../img/img-night/logo2white.png')} onClick={handleClickHeaderText}/>
+            :
+            <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
+            ) :   
+            <Header_logo src={require("../img/img-night/logowhite.png")} alt="" />
             }
             <Arrow onClick={handleClickCityPage} className={index === coords.length ?'rotate' : ''}/>
+       
         </HeaderWeatherApp>
     )
 }

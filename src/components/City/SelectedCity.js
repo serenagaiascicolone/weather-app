@@ -10,7 +10,7 @@ import LoaderSpinner from "../LoaderSpinner"
 
 
 export default function SelectedCity ({coords}) {
-    
+
     let {data, isLoading, error} = useGetForecastByCoordsQuery(coords) 
     let content = ''
     console.log(data)

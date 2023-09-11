@@ -90,7 +90,8 @@ const ButtonContainer = styled.div `
 `
 
 
-export default function CityList ({city, index, location}) {
+export default function CityList ({city, index, location, isNight}) {
+    console.log(isNight)
     // let time =  format ((new Date()), 'HH:mm')
  
     const [isButtonContainerView, setButtonContainer] = useState(undefined)

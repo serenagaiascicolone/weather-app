@@ -3,6 +3,7 @@ import SelectedCity from "../components/City/SelectedCity";
 
 
 export function SelectedCityRoute (){
+
     const [params] = useSearchParams ();
 
     const lat = params.get('lat')

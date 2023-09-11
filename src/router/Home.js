@@ -9,7 +9,8 @@ import { nanoid } from 'nanoid';
 import { useGetCityNameByCoordinatesQuery, weatherApi } from './../features/weatherApi';
 import CityListContainer from '../components/City/CityListContainer';
 import { setTextFilter } from '../features/filtersSlice';
-
+import { format } from 'date-fns';
+import setBodyColor from './../utilities/bodyColor';
 
 const HomeContainer = styled.main `
     display: flex;
@@ -97,14 +98,24 @@ const IconResetFilter = styled(BsArrowRepeat) `
 export default function Home () {
     const [isAddInput, setIsAddInput] = useState(false)
     const [isFilterInput, setIsFilterInput] = useState(false)
-    // const [location, setLocation] = useState({lat: 0, lon: 0})
     const searchRef = useRef()
     const filterRef = useRef()
     const [isFilterCity, setIsFilterCity] = useState(false)
+   
+    //handle body.color
     document.body.classList = '';
+    let time = new Date().getHours()
+    console.log(time)
+    // "1995-12-25T23:15:30"
+    const [isNight, setIsNight] = useState(time >= 20 || time < 6)
+   
+    if(isNight){
+        setBodyColor('night')
+    }else{
+        setBodyColor() 
+    }
 
-    
-    
+      
     //salvo le città aggiunte
     let cityAdded = useSelector(selectCities)
     useEffect(() => {
@@ -172,8 +183,12 @@ export default function Home () {
         return (
         <> 
         <HomeContainer>
-            {/* <HomeTitle>GIULIACCI APP</HomeTitle> */}
+            
+            {isNight ? 
+            <LogoText src={require('../img/img-night/logo2white.png')}/>
+            :
             <LogoText src={require('../img/logo2.png')}/>
+        }
             <HomeImgContainer>
                 <HomeImg src={require('../img/giuliacci.png')}/>
             </HomeImgContainer>
@@ -202,6 +217,7 @@ export default function Home () {
                 cityAdded={cityAdded}
                 isFilterCity={isFilterCity}
                 location = {location}
+                isNight = {isNight}
                 /> 
         </>
   

@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         /* background-color: ${props => props.theme.brightOne}; */
         background-image: ${props => props.theme.shadeOne};
+        
         background-size: cover;
         background-size: cover;
         font-family: ${props => props.theme.fontPrimary};
@@ -17,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
       
         
     }
-
+    
     button {
         border: none;
         background-color: ${props => props.theme.softFour};
@@ -72,6 +73,12 @@ const GlobalStyles = createGlobalStyle`
     .mixed {
         background-image: ${props => props.theme.shadeFive};
         background-size: cover;
+    }
+
+    .night {
+        background-image: ${props => props.theme.shadeNight};
+        color: white;
+        border-color: white;
     }
 `
 
