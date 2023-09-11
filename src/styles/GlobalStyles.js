@@ -32,8 +32,8 @@ const GlobalStyles = createGlobalStyle`
 
     button:hover {
         cursor: pointer;
-        background-color: ${props => props.theme.brightOneHover};
-        color: ${props => props.theme.brightFive}
+        color: ${props => props.theme.brightOneHover};
+        /* color: ${props => props.theme.brightFive} */
     }
     
     input {

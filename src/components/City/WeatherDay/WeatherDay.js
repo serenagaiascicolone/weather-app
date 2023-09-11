@@ -2,10 +2,10 @@ import { styled } from 'styled-components'
 import { cityUI } from '../../../utilities/cityUI';
 import { cities } from '../../../mock/cities';
 import setBodyColor from '../../../utilities/bodyColor';
-import { useLocation } from 'react-router-dom';
+
 import { format } from 'date-fns';
 import { it } from 'date-fns/locale';
-import { useState } from 'react';
+
 const WeatherDayContainer = styled.article `
 /* background-image: none ; */
     display: flex;
@@ -69,10 +69,7 @@ const TemperatureParams = styled.p `
 
 export default function WeatherDay ({coords, city, currentWeather, isNight}) {
   
-    console.log(city.dt)
-    // let day = format(
-	// 	(new Date().getTime() + (city.timezone * 1000)),
-	// 	'EEEE d',  {locale: it});
+   
     let day = format(
 		(new Date().getTime() + (city.timezone)),
 		'EEEE d',  {locale: it});

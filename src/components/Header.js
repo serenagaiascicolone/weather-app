@@ -79,14 +79,14 @@ function handleClickCityPage () {
             
             {location === '/city' ? (
                 isNight ?
-            <LogoText src={require('../img/img-night/logo2white.png')} onClick={handleClickHeaderText}/>
+            <LogoText src={require('../img/img-night/logoText.png')} onClick={handleClickHeaderText}/>
             :
-            <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
+            <LogoText src={require('../img/logoText.png')} onClick={handleClickHeaderText}/>
             ) : 
             isNight ?  
-            <Header_logo src={require("../img/img-night/logowhite.png")} alt="" />
+            <Header_logo src={require("../img/img-night/logoImg.png")} alt="" />
             :
-            <Header_logo src={require("../img/logo.png")} alt="" />
+            <Header_logo src={require("../img/logoImg.png")} alt="" />
             }
             <Arrow onClick={handleClickCityPage} className={index === coords.length ?'rotate' : ''}/>
        

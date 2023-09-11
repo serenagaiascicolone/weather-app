@@ -1,6 +1,6 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import  Home from './Home'
-import Layout from '../components/Layout'
+import Layout from './Layout'
 import { SelectedCityRoute } from './SelectedCityRoute';
 import NotFound from './NotFound';
 import Error from './Error';

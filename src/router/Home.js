@@ -182,9 +182,9 @@ export default function Home () {
         <HomeContainer>
             
             {isNight ? 
-            <LogoText src={require('../img/img-night/logo2white.png')}/>
+            <LogoText src={require('../img/img-night/logoText.png')}/>
             :
-            <LogoText src={require('../img/logo2.png')}/>
+            <LogoText src={require('../img/logoText.png')}/>
         }
             <HomeImgContainer>
                 <HomeImg src={require('../img/giuliacci.png')}/>

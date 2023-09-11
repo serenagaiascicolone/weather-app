@@ -58,9 +58,9 @@ export default function Footer ({isNight}) {
         <FooterContainer>
             <LogoContainer>
                 {isNight ? (
-                    <LogoText src={require('../img/img-night/logo2white.png')} alt="" />
+                    <LogoText src={require('../img/img-night/logoText.png')} alt="" />
                     ) : 
-                    <LogoText src={require('../img/logo2.png')} alt="" />    
+                    <LogoText src={require('../img/logoText.png')} alt="" />    
                 }
             </LogoContainer>
             <InfoListContainer>

@@ -1,7 +1,7 @@
 const theme = {
     // colors
         brightOne: '#4189A6', // azzurro scuro
-        // brightOneHover: '#82C0D9', 
+        brightOneHover: '#218c96', 
         brightTwo: '#79DCF2', // azzurro chiaro
         brightThree: '#F29F05', // acqua
         brightFour: '#F2C572', // arancione
@@ -12,11 +12,7 @@ const theme = {
         lightThree: '#BFA995', //tortora
         lightFour: '#F2762E', //arancione
 
-        // softOne: '#5A7302', // verde 
-        // softTwo: '#8C857D', // tortora più scuro 
-        // softThree: '#5A7302', // verde 
-        // softFour: '#5A7302', // verde 
-
+    
         darkOne: '#0D0D0D', // nero
         darkTwo: '#3B4015', // marrone scuro
 

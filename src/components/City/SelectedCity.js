@@ -5,9 +5,15 @@ import WeatherTodayDetails from "./WeatherDay/WeatherTodayDetails"
 import WeatherWeek from "./Week/WeatherWeek"
 import { useGetForecastByCoordsQuery } from "../../features/weatherApi"
 import LoaderSpinner from "../LoaderSpinner"
+import { styled } from "styled-components"
 
-
-
+const ErrorMessage = styled.h3 `
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    padding-top: 2rem;
+    justify-content: center;
+`
 
 export default function SelectedCity ({coords, isNight}) {
 
@@ -15,7 +21,7 @@ export default function SelectedCity ({coords, isNight}) {
     let content = ''
 
     if(error) {
-        content = <h3>Previsioni non trovate</h3>
+        content = <ErrorMessage>Previsioni non trovate</ErrorMessage>
     }
 
     if(isLoading) {

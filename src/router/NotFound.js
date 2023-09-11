@@ -1,6 +1,8 @@
 import { styled } from "styled-components"
 import {TiWeatherStormy} from "react-icons/ti"
 import { useNavigate } from "react-router-dom"
+import setBodyColor from "../utilities/bodyColor"
+import { useState } from "react"
 const NotFoundContainer = styled.div `
     width: 70%;
     height: 100vh;
@@ -20,6 +22,14 @@ const NotFoundText = styled.p `
     line-height: 1.5;
 `
 export default function NotFound () {
+    let time = new Date().getHours()
+    console.log(time)
+    // "1995-12-25T21:15:30"
+    const [isNight, setIsNight] = useState(time >= 20 || time < 6)
+   
+    if(isNight){
+        setBodyColor('night')
+    }
 const navigate = useNavigate()
     return (
         <NotFoundContainer>
