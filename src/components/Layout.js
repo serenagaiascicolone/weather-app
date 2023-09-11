@@ -3,6 +3,9 @@ import Header from './Header'
 import Footer from './Footer'
 import setBodyColor from '../utilities/bodyColor'
 import { useState } from 'react'
+
+
+
 export default function Layout () {
     let time = new Date().getHours()
     console.log(time)
@@ -11,13 +14,12 @@ export default function Layout () {
    
     if(isNight){
         setBodyColor('night')
-    }else{
-        setBodyColor() 
     }
+
     return (
         <>
         <Header isNight={isNight}/>
-        <Outlet isNight={isNight}/>
+        <Outlet context={isNight}/>
         <Footer isNight={isNight}/>
         </>
     )

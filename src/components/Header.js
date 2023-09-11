@@ -1,7 +1,7 @@
 
 import { styled } from 'styled-components'
 import {FiArrowRight} from 'react-icons/fi'
-import { useLocation, useNavigate, redirect } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { selectCities } from '../features/citiesSlice'
 import { useSelector } from 'react-redux';
@@ -13,18 +13,7 @@ const HeaderWeatherApp = styled.header `
     align-items: center;
     margin: 0 1rem;
 `
-const Header_text = styled.h2 `
-    margin: 0;
-    padding: 1rem;
-    letter-spacing: 0.2rem;
-    font-style: italic; 
-&&:hover {
-    cursor: pointer;
-    opacity: 0.7;
-    
-}
 
-`
 const Header_logo = styled.img `
     max-width: 50px;
     padding: 2rem;
@@ -59,7 +48,7 @@ const Arrow = styled(FiArrowRight) `
 `
 
 export default function Header({isNight}) {
-
+console.log(isNight)
     const location = useLocation().pathname
     const navigate = useNavigate()
     const cities = useSelector(selectCities)
@@ -87,20 +76,17 @@ function handleClickCityPage () {
 
     return (
         <HeaderWeatherApp>
-
-            {/* {location === '/city'  && !isNight ? (
-            <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
-            ) :   
-            <Header_logo src={require("../img/logo.png")} alt="" />
-            } */}
             
             {location === '/city' ? (
                 isNight ?
             <LogoText src={require('../img/img-night/logo2white.png')} onClick={handleClickHeaderText}/>
             :
             <LogoText src={require('../img/logo2.png')} onClick={handleClickHeaderText}/>
-            ) :   
+            ) : 
+            isNight ?  
             <Header_logo src={require("../img/img-night/logowhite.png")} alt="" />
+            :
+            <Header_logo src={require("../img/logo.png")} alt="" />
             }
             <Arrow onClick={handleClickCityPage} className={index === coords.length ?'rotate' : ''}/>
        

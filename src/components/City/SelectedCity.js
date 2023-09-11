@@ -9,11 +9,11 @@ import LoaderSpinner from "../LoaderSpinner"
 
 
 
-export default function SelectedCity ({coords}) {
+export default function SelectedCity ({coords, isNight}) {
 
     let {data, isLoading, error} = useGetForecastByCoordsQuery(coords) 
     let content = ''
-    console.log(data)
+
     if(error) {
         content = <h3>Previsioni non trovate</h3>
     }
@@ -32,19 +32,24 @@ export default function SelectedCity ({coords}) {
         coords={coords} 
         city={data.city} // name
         currentWeather = {data.list[0]} //meteo giorno corrente 
+        isNight={isNight}
         />
        
         <WeatherTodayDetails 
-        currentWeather= {data.list[0]}/>
+        currentWeather= {data.list[0]}
+        isNight={isNight}
+        />
        
         <HourForecast 
         forecast={data.list}
         timezone={data.city.timezone}
+        isNight={isNight}
         />        
        
         <WeatherWeek 
          forecast={data.list}
          timezone={data.city.timezone}
+         isNight={isNight}
         />
         </>
 

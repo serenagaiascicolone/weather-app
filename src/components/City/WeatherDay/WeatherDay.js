@@ -67,7 +67,7 @@ const TemperatureParams = styled.p `
     margin: 0 auto 0 auto;;
 `
 
-export default function WeatherDay ({coords, city, currentWeather}) {
+export default function WeatherDay ({coords, city, currentWeather, isNight}) {
   
     console.log(city.dt)
     // let day = format(
@@ -76,13 +76,7 @@ export default function WeatherDay ({coords, city, currentWeather}) {
     let day = format(
 		(new Date().getTime() + (city.timezone)),
 		'EEEE d',  {locale: it});
-
-    console.log(day)
     document.body.classList = '';
-    let time = new Date("1995-12-25T23:15:30").getHours()
-    console.log(time)
-    // "1995-12-25T23:15:30"
-    const [isNight, setIsNight] = useState(time >= 20 || time < 6)
     let nameUI = cityUI(currentWeather.weather[0].icon)
     
     if(isNight){

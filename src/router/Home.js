@@ -2,15 +2,15 @@ import { styled } from 'styled-components';
 import {BsArrowRepeat} from 'react-icons/bs'
 import {FiSearch} from 'react-icons/fi'
 import { useState, useRef, useEffect } from 'react';
-import { addedCity, selectCities } from "../features/citiesSlice"
+import {  selectCities } from "../features/citiesSlice"
 import {useSelector} from "react-redux"
 import {useDispatch} from "react-redux"
 import { nanoid } from 'nanoid';
-import { useGetCityNameByCoordinatesQuery, weatherApi } from './../features/weatherApi';
+import { weatherApi } from './../features/weatherApi';
 import CityListContainer from '../components/City/CityListContainer';
 import { setTextFilter } from '../features/filtersSlice';
-import { format } from 'date-fns';
 import setBodyColor from './../utilities/bodyColor';
+import { useOutletContext } from 'react-router-dom';
 
 const HomeContainer = styled.main `
     display: flex;
@@ -96,6 +96,8 @@ const IconResetFilter = styled(BsArrowRepeat) `
 `
 
 export default function Home () {
+    let isNight = useOutletContext()
+    console.log(isNight)
     const [isAddInput, setIsAddInput] = useState(false)
     const [isFilterInput, setIsFilterInput] = useState(false)
     const searchRef = useRef()
@@ -103,16 +105,11 @@ export default function Home () {
     const [isFilterCity, setIsFilterCity] = useState(false)
    
     //handle body.color
-    document.body.classList = '';
-    let time = new Date().getHours()
-    console.log(time)
-    // "1995-12-25T23:15:30"
-    const [isNight, setIsNight] = useState(time >= 20 || time < 6)
-   
     if(isNight){
         setBodyColor('night')
-    }else{
-        setBodyColor() 
+    }else {
+        document.body.classList = '';
+
     }
 
       
