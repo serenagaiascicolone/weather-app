@@ -59,11 +59,11 @@ const Image = styled.img `
 `
 
 
-export default function WeatherWeek ({forecast, timezone}) {
+export default function WeatherWeek ({forecast, timezone, isNight}) {
     // let timezone = forecast.city.timezone
     let day = format(new Date(), 'EEE', {locale: it}) //ven => venerdì
     let count;
-    console.log(forecast.list)
+
     
     
     let weekForecast = forecast
@@ -98,7 +98,11 @@ export default function WeatherWeek ({forecast, timezone}) {
             <WeekTemperature>{tempMax}°</WeekTemperature>
             <Therm></Therm>
             <WeekTemperature className='min'>{tempMin}°</WeekTemperature>
+            {isNight ? 
+            <Image src={require(`../../../img/img-night/${nameUI}.png`)} alt="" srcset="" />
+            :
             <Image src={require(`../../../img/ico/${nameUI}.png`)} alt="" srcset="" />
+        }
         </WeekArticle>
     
         )

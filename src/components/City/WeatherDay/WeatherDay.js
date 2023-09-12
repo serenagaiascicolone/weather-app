@@ -79,7 +79,7 @@ export default function WeatherDay ({coords, city, currentWeather, isNight}) {
     if(isNight){
         setBodyColor('night')
     }else{
-        setBodyColor(nameUI) 
+        setBodyColor(nameUI) //nameUI
     }
 
     

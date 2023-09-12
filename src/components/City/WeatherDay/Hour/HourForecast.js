@@ -49,8 +49,8 @@ const Image = styled.img `
 const Temperature = styled.h2 ``
 
 
-export default function HourForecast ({forecast, timezone}) {
-// let timezone = forecast.city.timezone;
+export default function HourForecast ({forecast, timezone, isNight}) {
+
 
 
 let hourForecast = forecast.map(element => {
@@ -62,7 +62,11 @@ let hourForecast = forecast.map(element => {
         <HourArticle>
         <Day> {dayAndMounth}</Day>
         <Time> {time}</Time>
+        {isNight ? 
+        <Image src={require(`../../../../img/img-night/${nameUI}.png`)} alt="" />
+        :
         <Image src={require(`../../../../img/ico/${nameUI}.png`)} alt="" />
+    }
         <Temperature> {Math.ceil(temp)}° </Temperature>
     </HourArticle>
 

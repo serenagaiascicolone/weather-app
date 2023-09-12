@@ -70,6 +70,18 @@ const GlobalStyles = createGlobalStyle`
         background-size: cover;
     }
 
+    .thunderstorm {
+        background-image: ${props => props.theme.shadeSix};
+        background-size: cover;
+    }
+
+    .snow {
+        background-image: ${props => props.theme.shadeSeven};
+        background-size: cover;
+    }
+
+
+
     .mixed {
         background-image: ${props => props.theme.shadeFive};
         background-size: cover;

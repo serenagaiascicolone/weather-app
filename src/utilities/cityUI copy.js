@@ -47,7 +47,7 @@ let cityUI = icon => {
         case '13d':
         case '13n':
         nameUI = 'snow'
-        break;
+
         // mist 
         case '50d':
         case '50n':

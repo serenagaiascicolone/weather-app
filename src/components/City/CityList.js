@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {HiArrowDown} from 'react-icons/hi'
 import {HiArrowNarrowUp} from 'react-icons/hi'
 import {GiPositionMarker} from 'react-icons/gi'
@@ -13,6 +13,7 @@ import { removeCity } from "../../features/citiesSlice"
 import { format } from "date-fns"
 import { useDispatch } from 'react-redux';
 import LoaderSpinner from './../LoaderSpinner';
+import { it } from 'date-fns/locale';
 
 
 
@@ -100,7 +101,7 @@ export default function CityList ({city, index, location, isNight}) {
     
     // dati meteo 
     let {data, isLoading, error} = useGetWeatherByCoordsQuery(city.coords)
-
+    console.log(data)
     
     // contenuto dinamico della pagina
     let content = ''
@@ -125,12 +126,17 @@ export default function CityList ({city, index, location, isNight}) {
                              <InfoCity key={data.id}>
                                 <span>
                                 <h3> {city.position ? <GiPositionMarker /> : ''} {data.name}</h3>
-                                <p>   {format((new Date().getTime() + (data.timezone)),'HH:mm')}</p>
+                                <p>   {format((new Date().getTime() + (data.timezone)),'HH:mm',  {locale: it})}</p>
+                                
                                
                                 </span>
                                 <span>
                                 <h2>{Math.round(data.main.temp)}°</h2>
-                                <ImgSelectedCity src={require(`../../img/ico/${nameUI}.png`)} alt="" />
+                                {isNight ? 
+                                    <ImgSelectedCity src={require(`../../img/img-night/${nameUI}.png`)} alt="" />
+                                    :
+                                    <ImgSelectedCity src={require(`../../img/ico/${nameUI}.png`)} alt="" />
+                                }
                                 </span>
                                 <ArrowDown 
                                 onClick={()=> setButtonContainer(index)}

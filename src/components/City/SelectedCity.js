@@ -19,7 +19,7 @@ export default function SelectedCity ({coords, isNight}) {
 
     let {data, isLoading, error} = useGetForecastByCoordsQuery(coords) 
     let content = ''
-
+    console.log('selected city', data)
     if(error) {
         content = <ErrorMessage>Previsioni non trovate</ErrorMessage>
     }

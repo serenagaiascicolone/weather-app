@@ -19,16 +19,13 @@ const Header_logo = styled.img `
     padding: 2rem;
 `
 const LogoText = styled.img `
-    max-width: 50%;
+    max-width: 250px;
     margin-top: 1rem;
     padding: 0;
 &&:hover {
     cursor: pointer;
     opacity: 0.7;
 }
-@media (min-width: 996px) { 
-    max-width: 250px;
-    }
 `
 
 const Arrow = styled(FiArrowRight) `
