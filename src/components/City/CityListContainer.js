@@ -17,17 +17,29 @@ const Message = styled.h4 `
     text-align: center;
 `
 
-export default function CityListContainer ({cityAdded, isFilterCity, location, isNight}) {
-    
-    let filteredCity = useSelector(selectFilters)
-    let filteredCityList = cityAdded.filter(city => city.name.toLowerCase() === filteredCity.toLowerCase())
-
+export default function CityListContainer ({cityAdded, location, isNight}) {
+    let filters = useSelector(selectFilters)
+    // let filteredCityList = cityAdded.filter(city => city.name.toLowerCase() === filteredCity.toLowerCase())
+    let filteredCityAdded = cityAdded.filter(city => {
+        let textMatch = city.name.toLowerCase()
+            .includes(filters.toLowerCase())
+        return textMatch
+    })
 
     return(
         <>
         
         <CityContainer>
-        {isFilterCity ? (
+            {filteredCityAdded && filteredCityAdded.length > 0 ? filteredCityAdded.map((city, index) => {
+                return <CityList 
+                city={city} 
+                index={index}
+                isNight={isNight}
+                />
+            }): (
+                <Message> Aggiungi città o resetta il filtro </Message>
+            )}
+        {/* {isFilterCity ? (
             filteredCityList.map((city, index) => {
                 return (
                         <CityList 
@@ -54,7 +66,7 @@ export default function CityListContainer ({cityAdded, isFilterCity, location, i
                     }
          {isFilterCity && filteredCityList.length === 0 ? 
             (<Message> Aggiungi città o resetta il filtro </Message>) : ''
-        }           
+        }            */}
         </CityContainer>
         </>
     )

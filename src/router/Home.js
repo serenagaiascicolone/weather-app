@@ -22,10 +22,7 @@ const HomeContainer = styled.main `
     /* height: 100vh; */
     /* padding: 2rem; */
 `
-
-const HomeTitle = styled.h1 `
-    letter-spacing: 0.5rem;
-`
+ 
 const LogoText = styled.img `
     max-width: 50%;
     margin: 0 auto;
@@ -97,12 +94,11 @@ const IconResetFilter = styled(BsArrowRepeat) `
 
 export default function Home () {
     let isNight = useOutletContext()
-    console.log(isNight)
+
     const [isAddInput, setIsAddInput] = useState(false)
     const [isFilterInput, setIsFilterInput] = useState(false)
     const searchRef = useRef()
     const filterRef = useRef()
-    const [isFilterCity, setIsFilterCity] = useState(false)
    
     //handle body.color
     if(isNight){
@@ -136,14 +132,12 @@ export default function Home () {
       function handleFilterCities () {
           let cityFiltered = filterRef.current.value;
           dispatch(setTextFilter(cityFiltered))
-          console.log(filterRef.current.value)
-          setIsFilterCity(true)
+        
         }
         
         
         function handleResetFilter () {
-        filterRef.current.value = ''
-        setIsFilterCity(false)
+        dispatch(setTextFilter(''))
       }
 
       //aggiungo posizione
@@ -162,7 +156,7 @@ export default function Home () {
         navigator.geolocation.getCurrentPosition(onSuccess, onError)
       }, [])
 
-  
+      console.log(navigator)
       // utilizzo il secondo reducerPath di weatherApi
       function HandleAddPosition () {
         let city = {
@@ -212,7 +206,6 @@ export default function Home () {
 
                 <CityListContainer 
                 cityAdded={cityAdded}
-                isFilterCity={isFilterCity}
                 location = {location}
                 isNight = {isNight}
                 /> 
