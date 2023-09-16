@@ -11,6 +11,7 @@ import CityListContainer from '../components/City/CityListContainer';
 import { setTextFilter } from '../features/filtersSlice';
 import setBodyColor from './../utilities/bodyColor';
 import { useOutletContext } from 'react-router-dom';
+import reportWebVitals from './../reportWebVitals';
 
 const HomeContainer = styled.main `
     display: flex;
@@ -91,7 +92,10 @@ const IconResetFilter = styled(BsArrowRepeat) `
     rotate: 360deg;
     }
 `
-
+const Message = styled.h4 `
+    text-align: center;
+    margin-top: 1.5rem;
+`
 export default function Home () {
     let isNight = useOutletContext()
 
@@ -140,35 +144,35 @@ export default function Home () {
         dispatch(setTextFilter(''))
       }
 
-      //aggiungo posizione
-      const [location, setLocation] = useState( {lat: 0, lon: 0});
-
-      useEffect(()=> {
-          const onSuccess = (position) => {   
-              setLocation({
-                  lat: position.coords.latitude,
-                    lon: position.coords.longitude
-              })  
-                };
-            const onError = (error) => {
-                return error.message
-            }
-        navigator.geolocation.getCurrentPosition(onSuccess, onError)
-      }, [])
-
-      console.log(navigator)
-      // utilizzo il secondo reducerPath di weatherApi
-      function HandleAddPosition () {
+      // addPosition
+      const [error, setError] = useState() // stato che mi consente di visualizzare eventuali errori nel DOM
+      function HandleAddPosition () {     
+          if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(onSuccess, onError)
+          }
+      }
+      
+      function onSuccess(position){
         let city = {
             id: nanoid(),
             coords: {
-                lat: location.lat,
-                lon: location.lon
-            }
+                lat: position.coords.latitude,
+                lon: position.coords.longitude
+              }
+          }
+         dispatch(weatherApi.endpoints.getCityNameByCoordinates.initiate(city))
+          setError('')
+      }
+      
+      function onError (error) {
+        if(error.code === 1){
+            setError(`Errore di geolocalizzazione: Geolocalizzazione negata dall'utente`)
+        } else if (error.code === 2) {
+            setError('Siamo spiacenti si è verificato un errore')
+        } else {
+            setError('Riprova')
         }
-            dispatch(weatherApi.endpoints.getCityNameByCoordinates.initiate(city))
-        }
-            
+    }
 
     
         return (
@@ -202,14 +206,14 @@ export default function Home () {
                 </InputContainer>
                 )}
             </HomeContainer_form>
+                <Message> {error}</Message>
         </HomeContainer>
-
+        
                 <CityListContainer 
                 cityAdded={cityAdded}
-                location = {location}
                 isNight = {isNight}
                 /> 
         </>
   
     )
-} 
+                }

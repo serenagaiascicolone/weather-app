@@ -39,7 +39,11 @@ export const weatherApi = createApi ({
                 const city = {
                     id: _arg.id,
                     name: cityResult.data[0].name,
-                    coords: _arg.coords,
+                    // coords: _arg.coords,
+                    coords: {
+                        lat: cityResult.data[0].lat,
+                        lon: cityResult.data[0].lon
+                      },
                     position: true,
                     }
                     _queryApi.dispatch(addedCity(city));

@@ -85,7 +85,7 @@ export default function WeatherWeek ({forecast, timezone, isNight}) {
         return false; // scarto tutti gli altri valori
     })
     .map(element => { // mappo i valori rimasti e creo la UI 
-        console.log(element.main.temp_min)
+ 
         let tempMax = Math.ceil(element.main.temp_max);
         let tempMin = Math.ceil(element.main.temp_min);
         let day = format(new Date(element.dt * 1000), 'EEE', {locale: it});

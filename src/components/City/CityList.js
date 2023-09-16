@@ -91,8 +91,8 @@ const ButtonContainer = styled.div `
 `
 
 
-export default function CityList ({city, index, location, isNight}) {
-    console.log(isNight)
+export default function CityList ({city, index, isNight}) {
+    
     // let time =  format ((new Date()), 'HH:mm')
  
     const [isButtonContainerView, setButtonContainer] = useState(undefined)
@@ -101,8 +101,7 @@ export default function CityList ({city, index, location, isNight}) {
     
     // dati meteo 
     let {data, isLoading, error} = useGetWeatherByCoordsQuery(city.coords)
-    console.log(data)
-    
+
     // contenuto dinamico della pagina
     let content = ''
     
